@@ -7,6 +7,7 @@ const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
 var http = require('https');
 var request = require('request');
+var SDK = require('blocksdk');
 
 exports.logExecuteData = [];
 
@@ -50,56 +51,41 @@ function logData(req) {
 }
 
 /*
- * POST Handler for / route of Activity (this is the edit route).
- */
-exports.edit = function (req, res) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    logData(req);
-    res.send(200, 'Edit');
-};
-
-/*
- * POST Handler for /save/ route of Activity.
- */
-exports.save = function (req, res) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    logData(req);
-    res.send(200, 'Save');
-};
-
-/*
  * POST Handler for /execute/ route of Activity.
  */
-exports.execute = function (req, res) {
+exports.index = function (req, res) {
 
-    // example on how to decode JWT
-    /*JWT(req.body, process.env.jwt_secret, (err, decoded) => {
-
-        // verification error -> unauthorized request
-        if (err) {
-            console.error(err);
-            return res.status(401).end();
-        }
-
-        if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
-            
-            // decoded in arguments
-            var decodedArgs = decoded.inArguments[0];
-            console.log(decodedArgs);
-            var colValArray = { "EmailAddress": "shane.smyth@slalom.com", "FirstName": "Shane" };
-            //authToken(process.env.clientId, process.env.clientSecret, 'LogDE', colValArray, status, responseId);
-
-            logData(req);
-            res.send(200, 'Execute');
-        } else {
-            console.error('inArguments invalid.');
-            return res.status(400).end();
-        }
-    });*/
-
-    if (req.body.inArguments.length > 0) {
+    if (window.self === window.top) {
+        document.body.innerText = 'This application is for use in the Salesforce Marketing Cloud Content Builder Editor only.';
+    } else {
+        var sdk = new BlockSDK();
+        sdk.getContent(function (content) {
+            var quill = new Quill('#editor-container', {
+                theme: 'snow'
+            });
+            quill.root.innerHTML = content;
+            function saveText() {
+                var html = quill.root.innerHTML;
+                sdk.setContent(html);
+                sdk.setSuperContent('This is super content: ' + html);
+    
+                sdk.getData(function (data) {
+                    var numberOfEdits = data.numberOfEdits || 0;
+                    sdk.setData({
+                        numberOfEdits: numberOfEdits + 1
+                    });
+                });
+                sdk.getCentralData(function (central) {
+                    var totalNumberOfEdits = central.totalNumberOfEdits || 0;
+                    sdk.setCentralData({
+                        totalNumberOfEdits: totalNumberOfEdits + 1
+                    });
+                });
+            }
+            quill.on('text-change', saveText);
+        });
+    }
+    /*if (req.body.inArguments.length > 0) {
             
         // decoded in arguments
         var inArgs = req.body.inArguments[0];
@@ -112,31 +98,10 @@ exports.execute = function (req, res) {
     } else {
         console.error('inArguments invalid.');
         return res.status(400).end();
-    }
+    }*/
 
     //logData(req);
     //res.send(200, 'Execute');
-};
-
-
-/*
- * POST Handler for /publish/ route of Activity.
- */
-exports.publish = function (req, res) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    logData(req);
-    res.send(200, 'Publish');
-};
-
-/*
- * POST Handler for /validate/ route of Activity.
- */
-exports.validate = function (req, res) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    logData(req);
-    res.send(200, 'Validate');
 };
 
 
