@@ -69,8 +69,11 @@ exports.index = function(req, res){
                     });
                 });
             }
+            
+            playground();
             sdk.setSuperContent('This is super content: ' + html);
             //quill.on('text-change', saveText);
+            console.log('Inside getContent');
         });
 
     }
@@ -84,5 +87,29 @@ exports.blockSave = function( req, res ) {
     console.log( 'req.body: ', req.body );
     sdk.setContent(function (content) {
         sdk.setContent('Set @name = "Barcode"');
+        console.log('Inside setContent');
     });
 };
+
+function playground(){
+    const options = {
+        uri: '/data/v1/async/dataextensions/key:'+platformDE+'/rows',
+        headers: {},
+        body: {"items": [{
+            "Id":"1",
+            "Name":"Category",
+            "Value" : "BarCode",
+            "EmailId": "23456"
+         }]}
+        // other request options
+    };
+
+    RestClient.put(options)
+    .then(response => {
+        // will be delivered with 200, 400, 401, 500, etc status codes
+        // response.body === payload from response
+        // response.res === full response from request client
+        console.log(response);
+    })
+    .catch(err => console.log(err));
+}
