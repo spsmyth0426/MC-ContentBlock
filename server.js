@@ -86,7 +86,7 @@ app.get('/', function(request, response, next) {
             //quill.on('text-change', saveText);
             console.log('Inside getContent');
             
-            res.render( 'index', {
+            res.render( 'test', {
                 title: 'MC CB Custom Attributes',
                 results: activity.logExecuteData,
             });
