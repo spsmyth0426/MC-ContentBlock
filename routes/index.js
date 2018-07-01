@@ -116,10 +116,10 @@ exports.index = function(req, res){
             //quill.on('text-change', saveText);
             console.log('Inside getContent');
             
-            res.render( 'index', {
+            /*res.render( 'index', {
                 title: 'MC CB Custom Attributes',
                 results: activity.logExecuteData,
-            });
+            });*/
         });
 
     }
