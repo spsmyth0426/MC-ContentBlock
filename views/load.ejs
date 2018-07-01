@@ -126,9 +126,9 @@
         var numberOfEdits = data.numberOfEdits || 0;
         console.log("Get Edits: "+numberOfEdits);
         sdk.setData({
-            numberOfEdits: numberOfEdits + 1;
-            console.log("Set Edits: "+numberOfEdits);
+            numberOfEdits: numberOfEdits + 1
         });
+        console.log("Set Edits: "+numberOfEdits);
     });
 
     sdk.getContent(function (content) {
