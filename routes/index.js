@@ -2,8 +2,6 @@
 
 // Deps
 var activity = require('./activity');
-var platformDE = 'MC_CB_Custom_Attributes'
-var BlockSDK = require('blocksdk');
 const FuelRest = require('fuel-rest');
 const options = {
 	auth: {
@@ -62,7 +60,7 @@ function logData(req) {
  */
 exports.save = function(req, res){
     authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
-    //logData(req);
+    logData(req);
 };
 
 function playground(){
