@@ -8,7 +8,7 @@ var http        = require('http');
 var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
-var activity    = require('./routes/activity');
+//var activity    = require('./routes/activity');
 
 var app = express();
 
@@ -30,6 +30,7 @@ if ('development' == app.get('env')) {
 
 // HubExchange Routes
 app.get('/', routes.index );
+app.get('/blockSave', routes.blockSave );
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
