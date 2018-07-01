@@ -85,7 +85,7 @@ app.get('/', function(request, response, next) {
             //quill.on('text-change', saveText);
             console.log('Inside getContent');
             
-            res.render('index.html', {});
+            res.render('test.html', {});
         });
 
     }
