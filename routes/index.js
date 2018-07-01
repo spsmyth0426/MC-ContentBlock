@@ -61,7 +61,7 @@ function logData(req) {
  * GET home page.
  */
 exports.save = function(req, res){
-    playground();
+    authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
     //logData(req);
 };
 
@@ -69,7 +69,7 @@ function playground(){
     var platformDE = 'MC_CB_Custom_Attributes';
     const options = {
         uri: '/data/v1/async/dataextensions/key:'+platformDE+'/rows',
-        headers: {},
+        headers: {'Authorization: Bearer '+},
         body: {"items": [{
             "Id":"1",
             "Name":"Category",
@@ -87,4 +87,66 @@ function playground(){
         console.log(response);
     })
     .catch(err => console.log(err));
+}
+
+/**********************/
+// CALL FOR AUTHORIZATION
+/**********************/
+function authToken(clientId, clientSecret, de){
+    var options = {
+        url: 'http://auth.exacttargetapis.com/v1/requestToken',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        form: {'clientId': clientId, 'clientSecret': clientSecret}
+    }
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            // Print out the response body
+            console.log('Bearer: Sucess');
+            let json = JSON.parse(body);
+            console.log(json);
+            var accessToken = json.accessToken;
+            console.log(accessToken);
+            postDE(accessToken, de);
+        }else{
+            console.log('Bearer: Error');
+        }
+    })
+}
+
+/**********************/
+// POST DATA
+/**********************/
+function postDE(accessToken, de){
+    var optionsDE = {
+        url: 'https://www.exacttargetapis.com/data/v1/async/dataextensions/key:'+de+'/rows',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+accessToken
+        },
+        //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
+        body: [ {
+            "items": [{
+               "FirstName":"Bobby",
+               "LastName" : "Jones",
+               "ZipCode": "23456"
+            }]
+         } ],
+        json: true
+    }
+    console.log(optionsDE);
+
+    request(optionsDE, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            // Print out the response body
+            console.log('Post to DE successful');
+        }else{
+            console.log('Post to DE: error');
+            console.log(body);
+        }
+    })
 }
