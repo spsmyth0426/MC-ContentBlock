@@ -101,7 +101,7 @@ function authToken(clientId, clientSecret, de){
 /**********************/
 function postDE(accessToken, de){
     var optionsDE = {
-        url: 'https://www.exacttargetapis.com/hub/v1/dataevents/MC_CB_Custom_Attributes/rowset',
+        url: 'https://www.exacttargetapis.com/hub/v1/dataevents/key:MC_CB_Custom_Attributes/rowset',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
