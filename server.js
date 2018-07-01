@@ -93,6 +93,11 @@ app.get('/', function(request, response, next) {
   });
 
 //app.get('/blockSave', routes.blockSave );
+app.get('/test', function(request, response, next) {
+  
+      response.render('test.html', {
+      });
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Shanes Express server listening on port ' + app.get('port'));
