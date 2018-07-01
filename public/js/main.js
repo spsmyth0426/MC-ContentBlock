@@ -183,3 +183,11 @@ if (typeof(module) === 'object') {
 	sdk.setSuperContent('This is super content: ');
         
 });
+
+$( document ).ready(function() {
+	console.log( "ready!" );
+	var sdk = new SDK();
+            
+			
+	sdk.setSuperContent('This is super content: ');
+});
