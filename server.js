@@ -15,6 +15,7 @@ var app = express();
 // Configure Express
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
+app.set('view engine', 'ejs');
 //app.use(bodyParser.urlencoded({ extended: true }));
 
 //app.use(express.methodOverride());
