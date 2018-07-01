@@ -86,7 +86,7 @@ app.get('/', function(request, response, next) {
             //quill.on('text-change', saveText);
             console.log('Inside getContent');
             
-            response.render('test.html', {});
+            response.render('test.ejs', {});
         });
 
     }
