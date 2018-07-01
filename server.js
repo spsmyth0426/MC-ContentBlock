@@ -7,7 +7,7 @@ var errorhandler = require('errorhandler');
 var http        = require('http');
 var path        = require('path');
 var request     = require('request');
-//var routes      = require('./routes');
+var routes      = require('./routes');
 //var activity    = require('./routes/activity');
 
 var app = express();
@@ -105,6 +105,8 @@ app.get('/load', function(request, response, next) {
   });
   logData(req);
 });
+
+app.post('/save', routes.save );
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Shanes Express server listening on port ' + app.get('port'));
