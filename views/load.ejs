@@ -10,19 +10,19 @@
     <script data-main="js/main.js" src="js/main.js"></script>
     <script data-main="js/blocksdk.js" src="js/blocksdk.js"></script>
     <script type="text/javascript">
-        $(function(){
-            console.log( "ready!" );
-            var sdk = new SDK();
-            console.log("SDK: "+ sdk);        
-                    
-            sdk.setSuperContent('This is super content: ');
+        
+        console.log( "ready!" );
+        var sdk = new SDK();
+        console.log("SDK: "+ sdk);        
+                
+        sdk.setSuperContent('This is super content: ');
 
-            $( "#deExternalKey" ).keyup(function() {
-                sdk.setContent($( "#deExternalKey" ).val());
-                console.log($( "#deExternalKey" ).val());
-                //alert( "Handler for .keyup() called." );
-            });
+        $( "#deExternalKey" ).keyup(function() {
+            sdk.setContent($( "#deExternalKey" ).val());
+            console.log($( "#deExternalKey" ).val());
+            //alert( "Handler for .keyup() called." );
         });
+       
     </script>
 
     <!--Styles-->
