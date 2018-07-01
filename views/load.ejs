@@ -122,6 +122,15 @@
 <script type="text/javascript">
     sdk.setSuperContent('This is super content: ');
 
+    sdk.getData(function (data) {
+        var numberOfEdits = data.numberOfEdits || 0;
+        console.log("Get Edits: "+numberOfEdits);
+        sdk.setData({
+            numberOfEdits: numberOfEdits + 1
+            console.log("Set Edits: "+numberOfEdits);
+        });
+    });
+
     sdk.getContent(function (content) {
         content += '.';
         sdk.setContent(content, function (setContent) {
