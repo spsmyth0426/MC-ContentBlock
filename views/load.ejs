@@ -35,6 +35,10 @@
 </head>
 <body>
     <div id="step1" class="step">
+        <div>
+            <p>Current Data: </p>
+            <p id="currentData"></p>
+        </div>
         <div class="slds-form slds-form_compound">
             <div class="slds-form-element">
                 <label class="slds-form-element__label" for="input-id-01">2Data Extension External Key</label>
@@ -72,50 +76,6 @@
                         </div>
                     </div>
                 </fieldset>
-                <!-- <div class="slds-form-element">
-                  <label class="slds-form-element__label" for="input-id-02">Textarea Label</label>
-                  <div class="slds-form-element__control">
-                    <textarea id="input-id-02" class="slds-textarea" placeholder="Placeholder Text"></textarea>
-                  </div>
-                </div>
-                <fieldset class="slds-form-element">
-                  <legend class="slds-form-element__legend slds-form-element__label">Checkbox Group label</legend>
-                  <div class="slds-form-element__control">
-                    <span class="slds-checkbox">
-                      <input type="checkbox" name="default" id="checkbox-21" value="checkbox-21" />
-                      <label class="slds-checkbox__label" for="checkbox-21">
-                        <span class="slds-checkbox_faux"></span>
-                        <span class="slds-form-element__label">All opportunities owned by you</span>
-                      </label>
-                    </span>
-                    <span class="slds-checkbox">
-                      <input type="checkbox" name="default" id="checkbox-22" value="checkbox-22" />
-                      <label class="slds-checkbox__label" for="checkbox-22">
-                        <span class="slds-checkbox_faux"></span>
-                        <span class="slds-form-element__label">All contacts in the account owned by you</span>
-                      </label>
-                    </span>
-                  </div>
-                </fieldset>
-                <fieldset class="slds-form-element">
-                  <legend class="slds-form-element__legend slds-form-element__label">Checkbox Group label</legend>
-                  <div class="slds-form-element__control">
-                    <span class="slds-radio">
-                      <input type="radio" id="radio-15" value="radio-15" name="options" />
-                      <label class="slds-radio__label" for="radio-15">
-                        <span class="slds-radio_faux"></span>
-                        <span class="slds-form-element__label">Lead Generation</span>
-                      </label>
-                    </span>
-                    <span class="slds-radio">
-                      <input type="radio" id="radio-16" value="radio-16" name="options" />
-                      <label class="slds-radio__label" for="radio-16">
-                        <span class="slds-radio_faux"></span>
-                        <span class="slds-form-element__label">Education Leads</span>
-                      </label>
-                    </span>
-                  </div>
-                </fieldset> -->
             </div>
 
 </div>
@@ -124,9 +84,12 @@
 
     var content = 'testtestetsetset';
 
+    var dataArray = {};
+
     sdk.getData(function (data) {
         // set value from get
         $( "#deExternalKey" ).val(data);
+        $( "#currentData" ).val(JSON.stringify(data, null, 2));
 
         var numberOfEdits = data.numberOfEdits || 0;
         var name = 'name';
