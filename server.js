@@ -101,7 +101,7 @@ app.get('/test', function(request, response, next) {
 });
 
 app.get('/load', function(request, response, next) {
-  response.render('load.html', {
+  response.render('load.ejs', {
   });
   logData(req);
 });
