@@ -62,7 +62,7 @@ function logData(req) {
  */
 exports.save = function(req, res){
     playground();
-    logData(req);
+    //logData(req);
 };
 
 function playground(){
