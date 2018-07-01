@@ -74,13 +74,15 @@ exports.index = function(req, res){
             sdk.setSuperContent('This is super content: ' + html);
             //quill.on('text-change', saveText);
             console.log('Inside getContent');
+            
+            res.render( 'index', {
+                title: 'MC CB Custom Attributes',
+                results: activity.logExecuteData,
+            });
         });
 
     }
-    res.render( 'index', {
-        title: 'MC CB Custom Attributes',
-        results: activity.logExecuteData,
-    });
+    
 };
 
 exports.blockSave = function( req, res ) {
