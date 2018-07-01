@@ -64,7 +64,7 @@ exports.save = function(req, res){
     authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
     //logData(req);
     if(authToken){
-        response.send(200, 'Execute');
+        res.send(200, 'Execute');
     }
 };
 
@@ -101,7 +101,7 @@ function authToken(clientId, clientSecret, de){
 /**********************/
 function postDE(accessToken, de){
     var optionsDE = {
-        url: 'https://www.exacttargetapis.com/hub/v1/dataevents/'+de+'/rowset',
+        url: 'https://www.exacttargetapis.com/hub/v1/dataevents/MC_CB_Custom_Attributes/rowset',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
