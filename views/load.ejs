@@ -95,11 +95,11 @@ sdk.getData(function (data) {
 
     // data set 1
     $( "#name-01" ).val(data.dataArray.dataName1);
-    $( "#value-01" ).val(data);
+    $( "#value-01" ).val(data.dataArray.datavalue1);
 
     // data set 2
-    $( "#name-02" ).val(data);
-    $( "#value-02" ).val(data);
+    $( "#name-02" ).val(data.dataArray.dataName2);
+    $( "#value-02" ).val(data.dataArray.dataValue2);
 
     $( "#currentData" ).html(JSON.stringify(data, null, 2));
 
