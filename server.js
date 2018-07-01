@@ -101,9 +101,21 @@ app.get('/test', function(request, response, next) {
 });
 
 app.get('/blah', function(request, response, next) {
-  
-  response.render('test.ejs', {
-  });
+  if (window.self === window.top) {
+    document.body.innerText = 'This application is for use in the Salesforce Marketing Cloud Content Builder Editor only.';
+  } else {
+      var sdk = new BlockSDK();
+      sdk.getContent(function (content) {
+          
+          sdk.setSuperContent('This is super content: ' + html);
+          //quill.on('text-change', saveText);
+          console.log('Inside getContent');
+          
+          response.render('test.ejs', {});
+      });
+
+  }
+logData(req);
 });
 
 http.createServer(app).listen(app.get('port'), function(){
