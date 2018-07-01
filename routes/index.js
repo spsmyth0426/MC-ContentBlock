@@ -63,6 +63,9 @@ function logData(req) {
 exports.save = function(req, res){
     authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
     //logData(req);
+    if(authToken){
+        response.send(200, 'Execute');
+    }
 };
 
 /**********************/
@@ -98,7 +101,7 @@ function authToken(clientId, clientSecret, de){
 /**********************/
 function postDE(accessToken, de){
     var optionsDE = {
-        url: 'https://www.exacttargetapis.com/data/v1/async/dataextensions/key:'+de+'/rows',
+        url: 'https://www.exacttargetapis.com/hub/v1/dataevents/'+de+'/rowset',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -106,11 +109,13 @@ function postDE(accessToken, de){
         },
         //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
         body: {
-            "items": [{
-               "Id":"12345",
-               "Name" : "TestName",
-               "Value": "TestValue"
-            }]
+            "keys":{
+                "Id": "194893"
+            },
+            "values":{
+                "Name": "TestName",
+                "Value": 'TestValue'
+            }
          },
         json: true
     }
@@ -120,11 +125,9 @@ function postDE(accessToken, de){
         if (!error && response.statusCode == 200) {
             // Print out the response body
             console.log('Post to DE successful');
-            response.send(200, 'Execute');
         }else{
             console.log('Post to DE: error');
             console.log(body);
-            response.send(400, 'Error');
         }
     })
 }
