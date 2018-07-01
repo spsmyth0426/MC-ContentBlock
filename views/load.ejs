@@ -15,13 +15,6 @@
         var sdk = new SDK();
         console.log("SDK: "+ sdk);        
                 
-        sdk.setSuperContent('This is super content: ');
-
-        $( "#deExternalKey" ).keyup(function() {
-            sdk.setContent($( "#deExternalKey" ).val());
-            console.log($( "#deExternalKey" ).val());
-            //alert( "Handler for .keyup() called." );
-        });
        
     </script>
 
@@ -126,6 +119,14 @@
             </div>
 
 </div>
+<script type="text/javascript">
+    sdk.setSuperContent('This is super content: ');
 
+$( "#deExternalKey" ).keyup(function() {
+    sdk.setContent($( "#deExternalKey" ).val());
+    console.log($( "#deExternalKey" ).val());
+    //alert( "Handler for .keyup() called." );
+});
+</script>
 </body>
 </html>
