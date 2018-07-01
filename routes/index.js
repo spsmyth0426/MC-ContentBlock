@@ -59,33 +59,9 @@ function logData(req) {
  * GET home page.
  */
 exports.save = function(req, res){
-    //authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
+    authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
     logData(req);
 };
-
-function playground(){
-    var platformDE = 'MC_CB_Custom_Attributes';
-    const options = {
-        uri: '/data/v1/async/dataextensions/key:'+platformDE+'/rows',
-        headers: {'Authorization: Bearer '+},
-        body: {"items": [{
-            "Id":"1",
-            "Name":"Category",
-            "Value" : "BarCode",
-            "EmailId": "23456"
-         }]}
-        // other request options
-    };
-
-    RestClient.put(options)
-    .then(response => {
-        // will be delivered with 200, 400, 401, 500, etc status codes
-        // response.body === payload from response
-        // response.res === full response from request client
-        console.log(response);
-    })
-    .catch(err => console.log(err));
-}
 
 /**********************/
 // CALL FOR AUTHORIZATION
