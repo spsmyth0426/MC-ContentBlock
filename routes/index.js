@@ -2,6 +2,7 @@
 
 // Deps
 var activity = require('./activity');
+var request     = require('request');
 const FuelRest = require('fuel-rest');
 const options = {
 	auth: {
