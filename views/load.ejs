@@ -91,15 +91,15 @@ var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2
 
 sdk.getData(function (data) {
     // set value from get
-    $( "#deExternalKey" ).val(data.dataDE.de);
+    $( "#deExternalKey" ).val(data);
 
     // data set 1
-    $( "#name-01" ).val(data.dataArray.dataName1);
-    $( "#value-01" ).val(data.dataArray.dataValue1);
+    $( "#name-01" ).val(data);
+    $( "#value-01" ).val(data);
 
     // data set 2
-    $( "#name-02" ).val(data.dataArray.dataName2);
-    $( "#value-02" ).val(data.dataArray.dataValue2);
+    $( "#name-02" ).val(data);
+    $( "#value-02" ).val(data);
 
     $( "#currentData" ).html(JSON.stringify(data, null, 2));
 
