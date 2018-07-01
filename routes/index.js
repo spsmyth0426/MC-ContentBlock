@@ -105,13 +105,13 @@ function postDE(accessToken, de){
             'Authorization': 'Bearer '+accessToken
         },
         //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
-        body: [ {
+        body: {
             "items": [{
-               "FirstName":"Bobby",
-               "LastName" : "Jones",
-               "ZipCode": "23456"
+               "Id":"12345",
+               "Name" : "TestName",
+               "Value": "TestValue"
             }]
-         } ],
+         },
         json: true
     }
     console.log(optionsDE);
@@ -120,9 +120,11 @@ function postDE(accessToken, de){
         if (!error && response.statusCode == 200) {
             // Print out the response body
             console.log('Post to DE successful');
+            res.send(200, 'Execute');
         }else{
             console.log('Post to DE: error');
             console.log(body);
+            res.send(400, 'Error');
         }
     })
 }
