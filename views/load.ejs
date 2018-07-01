@@ -120,7 +120,7 @@
 
 </div>
 <script type="text/javascript">
-    sdk.setSuperContent('This is super content: ');
+    sdk.setSuperContent('Placeholder for simple ampscript section.');
 
     var content = 'testtestetsetset';
 
@@ -128,6 +128,7 @@
         var numberOfEdits = data.numberOfEdits || 0;
         var name = 'name';
         var value = 'value';
+        console.log("Get data: "+data);
         console.log("Get Edits: "+numberOfEdits);
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
