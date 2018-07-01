@@ -86,7 +86,7 @@
 
 var content = 'testtestetsetset';
 
-var dataDE = {de: ""};
+var dataDE = {de: "Test"};
 var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
 
 sdk.getData(function (data) {
@@ -104,6 +104,9 @@ sdk.getData(function (data) {
     $( "#currentData" ).html(JSON.stringify(data, null, 2));
 
     var numberOfEdits = data.numberOfEdits || 0;
+    var dataDE = {de: "Test"};
+    var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
+
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
         dataDE: dataDE,
@@ -127,6 +130,9 @@ function saveText() {
 
     sdk.getData(function (data) {
         var numberOfEdits = data.numberOfEdits || 0;
+        var dataDE = {de: "Test"};
+        var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
+
     var value = data.value || 0;
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
