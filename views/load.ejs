@@ -140,6 +140,8 @@
     });
 
     sdk.getContent(function (content) {
+        // set value from get
+        $( "#deExternalKey" ).val(content);
         content += '.';
         sdk.setContent(content, function (setContent) {
             console.log("Shane Content" + content);
