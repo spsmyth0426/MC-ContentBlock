@@ -9,11 +9,14 @@ requirejs.config({
         },
 		'customActivity': {
 			deps: ['vendor/jquery.min', 'vendor/postmonger']
+		},
+		'blocksdk': {
+			deps: ['vendor/blocksdk.min', 'vendor/postmonger']
 		}
     }
 });
 
-requirejs( ['vendor/jquery.min', 'customActivity'], function( $, customActivity ) {
+requirejs( ['vendor/jquery.min', 'customActivity', 'blocksdk'], function( $, customActivity ) {
 	console.log( 'REQUIRE LOADED' );
 });
 
