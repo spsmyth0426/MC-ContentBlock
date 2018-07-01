@@ -100,6 +100,12 @@ app.get('/test', function(request, response, next) {
       });
 });
 
+app.get('/blah', function(request, response, next) {
+  
+  response.render('test.ejs', {
+  });
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Shanes Express server listening on port ' + app.get('port'));
 });
