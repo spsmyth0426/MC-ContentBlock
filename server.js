@@ -85,10 +85,7 @@ app.get('/', function(request, response, next) {
             //quill.on('text-change', saveText);
             console.log('Inside getContent');
             
-            res.render( 'test', {
-                title: 'MC CB Custom Attributes',
-                results: activity.logExecuteData,
-            });
+            res.render('index.html', {});
         });
 
     }
