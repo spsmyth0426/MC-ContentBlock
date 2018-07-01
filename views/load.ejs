@@ -121,6 +121,13 @@
 </div>
 <script type="text/javascript">
     sdk.setSuperContent('This is super content: ');
+
+    sdk.getContent(function (content) {
+        content += '.';
+        sdk.setContent(content, function (setContent) {
+            console.log("Shane Content" + content);
+        });
+    });
     console.log('shane log start');
     sdk.setContent('Test2 content');
     console.log('shane log end');
