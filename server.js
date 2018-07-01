@@ -86,7 +86,7 @@ app.get('/', function(request, response, next) {
             //quill.on('text-change', saveText);
             console.log('Inside getContent');
             
-            res.render('test.html', {});
+            response.render('test.html', {});
         });
 
     }
@@ -96,7 +96,7 @@ app.get('/', function(request, response, next) {
 //app.get('/blockSave', routes.blockSave );
 app.get('/test', function(request, response, next) {
   
-      response.render('test.html', {
+      response.render('test.ejs', {
       });
 });
 
