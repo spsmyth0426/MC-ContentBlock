@@ -93,20 +93,24 @@ var dataDE = {de: "Test"};
 sdk.getData(function (data) {
     var dataArray = [{"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}];
 
-    console.log("Current Data: "+JSON.stringify(data, null, 2));
-    console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
+    console.log("Current Data 1: "+JSON.stringify(data, null, 2));
+    console.log("DataArray 1: "+JSON.stringify(dataArray, null, 2));
     // set value from get
-    $( "#deExternalKey" ).val(data);
+    if(data){
+        $( "#deExternalKey" ).val(data);
 
-    // data set 1
-    $( "#name-01" ).val(data.dataArray.values.Name1);
-    $( "#value-01" ).val(data.dataArray.values.Value1);
+        // data set 1
+        $( "#name-01" ).val(data.dataArray.values.Name1);
+        $( "#value-01" ).val(data.dataArray.values.Value1);
 
-    // data set 2
-    $( "#name-02" ).val(data.dataArray.values.Name2);
-    $( "#value-02" ).val(data.dataArray.values.Value2);
+        // data set 2
+        $( "#name-02" ).val(data.dataArray.values.Name2);
+        $( "#value-02" ).val(data.dataArray.values.Value2);
 
-    $( "#currentData" ).html(JSON.stringify(data, null, 2));
+        $( "#currentData" ).html(JSON.stringify(data, null, 2));
+    }else{
+        $( "#currentData" ).html(JSON.stringify(dataArray, null, 2));
+    }
 
     var numberOfEdits = data.numberOfEdits || 0;
     var dataDE = {de: "Test"};
@@ -118,6 +122,8 @@ sdk.getData(function (data) {
         dataDE: dataDE,
         dataArray: dataArray
     });
+    console.log("Current Data 2: "+JSON.stringify(data, null, 2));
+    console.log("DataArray 2: "+JSON.stringify(dataArray, null, 2));
 });
 
 sdk.getContent(function (content) {
