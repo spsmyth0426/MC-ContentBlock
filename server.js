@@ -37,7 +37,7 @@ app.get('/', function(request, response, next) {
 app.get('/load', function(request, response, next) {
   response.render('load.ejs', {
   });
-  logData(req);
+  logData(request);
 });
 
 app.post('/save', routes.save );
