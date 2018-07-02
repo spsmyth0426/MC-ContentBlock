@@ -87,7 +87,7 @@
 var content = 'testtestetsetset';
 
 var dataDE = {de: "Test"};
-var dataArray = {Name1: "Test 1 Name", Value1: "Test 1 Value", Name2: "Test 2 Name", Value2: "Test 2 Value"};
+var dataArray = {"Name1": "Test 1 Name", "Value1": "Test 1 Value", "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
 
 sdk.getData(function (data) {
     // set value from get
@@ -105,7 +105,7 @@ sdk.getData(function (data) {
 
     var numberOfEdits = data.numberOfEdits || 0;
     var dataDE = {de: "Test"};
-    var dataArray = {Name1: data.dataArray.Name1, Value1: data.dataArray.Value1, Name2: "Test 2 Name", Value2: "Test 2 Value"};
+    var dataArray = {"Name1": data.dataArray.Name1, "Value1": data.dataArray.Value1, "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
 
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
