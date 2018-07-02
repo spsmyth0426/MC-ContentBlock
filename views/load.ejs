@@ -91,7 +91,7 @@ var dataDE = {de: "Test"};
 //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
 
 sdk.getData(function (data) {
-    if(jQuery.isEmptyObject({dataArray})){
+    if(typeof dataArray === 'undefined'){
         var dataArray = [{"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}];
     }
     
