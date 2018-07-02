@@ -99,19 +99,19 @@ sdk.getData(function (data) {
     $( "#deExternalKey" ).val(data);
 
     // data set 1
-    $( "#name-01" ).val(data.dataArray.Name1);
-    $( "#value-01" ).val(data.dataArray.Value1);
+    $( "#name-01" ).val(data.dataArray.values.Name1);
+    $( "#value-01" ).val(data.dataArray.values.Value1);
 
     // data set 2
-    $( "#name-02" ).val(data.dataArray.Name2);
-    $( "#value-02" ).val(data.dataArray.Value2);
+    $( "#name-02" ).val(data.dataArray.values.Name2);
+    $( "#value-02" ).val(data.dataArray.values.Value2);
 
     $( "#currentData" ).html(JSON.stringify(data, null, 2));
 
     var numberOfEdits = data.numberOfEdits || 0;
     var dataDE = {de: "Test"};
     //var dataArray = {"Name1": data.dataArray.Name1, "Value1": data.dataArray.Value1, "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
-    var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.Name1,"Value1": data.dataArray.Value1}};
+    var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
 
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
@@ -141,7 +141,7 @@ function saveText() {
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
-        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.Name1,"Value1": data.dataArray.Value1}};
+        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
         console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
 
         $.ajax({
