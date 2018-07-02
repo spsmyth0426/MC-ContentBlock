@@ -143,7 +143,7 @@ function saveText() {
     sdk.getData(function (data) {
         $( "#currentData" ).html(JSON.stringify(data, null, 2));
 
-        console.log("Data: "+JSON.stringify(data, null, 2));
+        console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
@@ -166,7 +166,7 @@ function saveText() {
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
             dataDE: dataDE,
-            dataArray: dataArray
+            dataArray: data.dataArray
         });
     });
 
