@@ -131,11 +131,13 @@ function saveText() {
     sdk.setSuperContent('This is super content: ' + html);
 
     sdk.getData(function (data) {
+        console.log("Data: "+data);
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
         var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.Name1,"Value1": data.dataArray.Value1}}
-        
+        console.log("DataArray: "+dataArray);
+
         $.ajax({
             url: "https://shane-cb.herokuapp.com/save",
             type: 'POST',
