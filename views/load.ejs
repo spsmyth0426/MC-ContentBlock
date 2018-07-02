@@ -87,25 +87,25 @@
 var content = 'testtestetsetset';
 
 var dataDE = {de: "Test"};
-var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
+var dataArray = {Name1: "Test 1 Name", Value1: "Test 1 Value", Name2: "Test 2 Name", Value2: "Test 2 Value"};
 
 sdk.getData(function (data) {
     // set value from get
     $( "#deExternalKey" ).val(data);
 
     // data set 1
-    $( "#name-01" ).val(data.dataArray.dataName1);
-    $( "#value-01" ).val(data.dataArray.datavalue1);
+    $( "#name-01" ).val(data.dataArray.Name1);
+    $( "#value-01" ).val(data.dataArray.Value1);
 
     // data set 2
-    $( "#name-02" ).val(data.dataArray.dataName2);
-    $( "#value-02" ).val(data.dataArray.dataValue2);
+    $( "#name-02" ).val(data.dataArray.Name2);
+    $( "#value-02" ).val(data.dataArray.Value2);
 
     $( "#currentData" ).html(JSON.stringify(data, null, 2));
 
     var numberOfEdits = data.numberOfEdits || 0;
     var dataDE = {de: "Test"};
-    var dataArray = {dataName1: data.dataArray.dataName1, datavalue1: data.dataArray.datavalue1, dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
+    var dataArray = {Name1: data.dataArray.Name1, Value1: data.dataArray.Value1, Name2: "Test 2 Name", Value2: "Test 2 Value"};
 
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
@@ -132,7 +132,7 @@ function saveText() {
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
-        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name": data.dataArray.dataName1,"Value": data.dataArray.dataValue1}}
+        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name": data.dataArray.Name1,"Value": data.dataArray.Value1}}
         
         $.ajax({
             url: "/save",
@@ -167,6 +167,10 @@ function saveText() {
 $( "#deExternalKey" ).keyup(function() {
     saveText();
     console.log($( "#deExternalKey" ).val());
+});
+$( "#name-01" ).keyup(function() {
+    saveText();
+    console.log($( "#name-01" ).val());
 });
 </script>
 </body>
