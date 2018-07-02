@@ -105,7 +105,7 @@ sdk.getData(function (data) {
 
     var numberOfEdits = data.numberOfEdits || 0;
     var dataDE = {de: "Test"};
-    var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
+    var dataArray = {dataName1: data.dataArray.dataName1, datavalue1: data.dataArray.datavalue1, dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
 
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
@@ -131,15 +131,31 @@ function saveText() {
     sdk.getData(function (data) {
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
-        var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
-
-    var value = data.value || 0;
+        //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
+        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name": data.dataArray.dataName1,"Value": data.dataArray.dataValue1}}
+        
+        $.ajax({
+            url: "/save",
+            type: 'POST',
+            cache: false,
+            data: dataArray,
+            beforeSend: function() {},
+            timeout: 10000,
+            error: function() {},
+            success: function(data) {
+                data.forEach(function(item) {
+                    console.log(item);
+                });
+            }
+        });
+        var value = data.value || 0;
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
             dataDE: dataDE,
             dataArray: dataArray
         });
     });
+
     sdk.getCentralData(function (central) {
         var totalNumberOfEdits = central.totalNumberOfEdits || 0;
         sdk.setCentralData({
