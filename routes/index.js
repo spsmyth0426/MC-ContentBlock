@@ -108,7 +108,7 @@ function postDE(accessToken, de){
             'Authorization': 'Bearer '+accessToken
         },
         //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
-        body: {
+        body: [{
             "keys":{
                 "Id": "194893"
             },
@@ -116,7 +116,7 @@ function postDE(accessToken, de){
                 "Name": "TestName",
                 "Value": 'TestValue'
             }
-         },
+         }],
         json: true
     }
     console.log(optionsDE);
