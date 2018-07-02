@@ -62,10 +62,11 @@ function logData(req) {
  */
 exports.save = function(req, res){
     var deExternalKey = req.body.deExternalKey;
-    var item = req.body.item;
+    var keys = req.body.keys;
+    var values = req.body.values;
     console.log(deExternalKey);
 
-    authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', deExternalKey, item);
+    authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', deExternalKey, keys, values);
     //logData(req);
     if(authToken){
         res.send(200, 'Execute');
@@ -75,7 +76,7 @@ exports.save = function(req, res){
 /**********************/
 // CALL FOR AUTHORIZATION
 /**********************/
-function authToken(clientId, clientSecret, deExternalKey, item){
+function authToken(clientId, clientSecret, deExternalKey, keys, values){
     var options = {
         url: 'http://auth.exacttargetapis.com/v1/requestToken',
         method: 'POST',
@@ -93,7 +94,7 @@ function authToken(clientId, clientSecret, deExternalKey, item){
             console.log(json);
             var accessToken = json.accessToken;
             console.log(accessToken);
-            postDE(accessToken, deExternalKey, item);
+            postDE(accessToken, deExternalKey, keys, values);
         }else{
             console.log('Bearer: Error');
         }
@@ -103,7 +104,7 @@ function authToken(clientId, clientSecret, deExternalKey, item){
 /**********************/
 // POST DATA
 /**********************/
-function postDE(accessToken, deExternalKey, item){
+function postDE(accessToken, deExternalKey, keys, values){
     var optionsDE = {
         url: 'https://www.exacttargetapis.com/hub/v1/dataevents/key:MC_CB_Custom_Attributes/rowset',
         method: 'POST',
@@ -112,7 +113,8 @@ function postDE(accessToken, deExternalKey, item){
             'Authorization': 'Bearer '+accessToken
         },
         body: [{
-            item
+            keys,
+            values
          }],
          /*body: [{
             "keys":{
