@@ -61,10 +61,11 @@ function logData(req) {
  * GET home page.
  */
 exports.save = function(req, res){
-    var deExternalKey = req.body;
+    var deExternalKey = req.body.deExternalKey;
+    var item = req.body.item;
     console.log(deExternalKey);
 
-    authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
+    authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', deExternalKey, item);
     //logData(req);
     if(authToken){
         res.send(200, 'Execute');
@@ -74,7 +75,7 @@ exports.save = function(req, res){
 /**********************/
 // CALL FOR AUTHORIZATION
 /**********************/
-function authToken(clientId, clientSecret, de){
+function authToken(clientId, clientSecret, deExternalKey, item){
     var options = {
         url: 'http://auth.exacttargetapis.com/v1/requestToken',
         method: 'POST',
@@ -92,7 +93,7 @@ function authToken(clientId, clientSecret, de){
             console.log(json);
             var accessToken = json.accessToken;
             console.log(accessToken);
-            postDE(accessToken, de);
+            postDE(accessToken, deExternalKey, item);
         }else{
             console.log('Bearer: Error');
         }
@@ -102,7 +103,7 @@ function authToken(clientId, clientSecret, de){
 /**********************/
 // POST DATA
 /**********************/
-function postDE(accessToken, de){
+function postDE(accessToken, deExternalKey, item){
     var optionsDE = {
         url: 'https://www.exacttargetapis.com/hub/v1/dataevents/key:MC_CB_Custom_Attributes/rowset',
         method: 'POST',
@@ -110,8 +111,10 @@ function postDE(accessToken, de){
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '+accessToken
         },
-        //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
         body: [{
+            item
+         }],
+         /*body: [{
             "keys":{
                 "Id": "194893"
             },
@@ -119,7 +122,7 @@ function postDE(accessToken, de){
                 "Name": "TestName",
                 "Value": 'TestValue'
             }
-         }],
+         }],*/
         json: true
     }
     console.log(optionsDE);
