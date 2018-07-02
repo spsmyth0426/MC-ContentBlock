@@ -88,10 +88,10 @@ var content = 'testtestetsetset';
 
 var dataDE = {de: "Test"};
 //var dataArray = {"Name1": "Test 1 Name", "Value1": "Test 1 Value", "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
-var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
+//var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
 
 sdk.getData(function (data) {
-    var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
+    var dataArray = [{"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}];
 
     console.log("Current Data: "+JSON.stringify(data, null, 2));
     console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
@@ -111,7 +111,7 @@ sdk.getData(function (data) {
     var numberOfEdits = data.numberOfEdits || 0;
     var dataDE = {de: "Test"};
     //var dataArray = {"Name1": data.dataArray.Name1, "Value1": data.dataArray.Value1, "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
-    var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
+    //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
 
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
