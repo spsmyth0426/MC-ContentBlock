@@ -61,8 +61,8 @@ function logData(req) {
  * GET home page.
  */
 exports.save = function(req, res){
-    var deExternalKey = req.body;
-    console.log(deExternalKey);
+    var deExternalKey = req;
+    console.log(req);
 
     authToken('xc29s6f8f0zil8dy8s1be2bb', 'I13izFgvSNg6xdb0mrOD7BBd', 'MC_CB_Custom_Attributes');
     //logData(req);
