@@ -91,6 +91,7 @@ var dataDE = {de: "Test"};
 var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}
 
 sdk.getData(function (data) {
+    console.log("Current Data: "+JSON.stringify(data, null, 2));
     // set value from get
     $( "#deExternalKey" ).val(data);
 
@@ -131,12 +132,14 @@ function saveText() {
     sdk.setSuperContent('This is super content: ' + html);
 
     sdk.getData(function (data) {
-        console.log("Data: "+data);
+        $( "#currentData" ).html(JSON.stringify(data, null, 2));
+        
+        console.log("Data: "+JSON.stringify(data, null, 2));
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
         var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.Name1,"Value1": data.dataArray.Value1}}
-        console.log("DataArray: "+dataArray);
+        console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
 
         $.ajax({
             url: "https://shane-cb.herokuapp.com/save",
