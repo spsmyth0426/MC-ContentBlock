@@ -87,7 +87,8 @@
 var content = 'testtestetsetset';
 
 var dataDE = {de: "Test"};
-var dataArray = {"Name1": "Test 1 Name", "Value1": "Test 1 Value", "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
+//var dataArray = {"Name1": "Test 1 Name", "Value1": "Test 1 Value", "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
+var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}
 
 sdk.getData(function (data) {
     // set value from get
@@ -105,7 +106,8 @@ sdk.getData(function (data) {
 
     var numberOfEdits = data.numberOfEdits || 0;
     var dataDE = {de: "Test"};
-    var dataArray = {"Name1": data.dataArray.Name1, "Value1": data.dataArray.Value1, "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
+    //var dataArray = {"Name1": data.dataArray.Name1, "Value1": data.dataArray.Value1, "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
+    var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.Name1,"Value1": data.dataArray.Value1}}
 
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
@@ -132,10 +134,10 @@ function saveText() {
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
-        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name": data.dataArray.Name1,"Value": data.dataArray.Value1}}
+        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.Name1,"Value1": data.dataArray.Value1}}
         
         $.ajax({
-            url: "/save",
+            url: "https://shane-cb.herokuapp.com/save",
             type: 'POST',
             cache: false,
             data: dataArray,
