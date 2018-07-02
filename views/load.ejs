@@ -91,8 +91,10 @@ var dataDE = {de: "Test"};
 //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
 
 sdk.getData(function (data) {
-    var dataArray = [{"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}];
-
+    if(jQuery.isEmptyObject({dataArray})){
+        var dataArray = [{"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}];
+    }
+    
     console.log("Current Data 1: "+JSON.stringify(data, null, 2));
     console.log("DataArray 1: "+JSON.stringify(dataArray, null, 2));
     // set value from get
@@ -150,6 +152,13 @@ function saveText() {
         //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
         //console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
 
+        var value = data.value || 0;
+        sdk.setData({
+            numberOfEdits: numberOfEdits + 1,
+            dataDE: dataDE,
+            dataArray: data.dataArray
+        });
+
         $.ajax({
             url: "https://shane-cb.herokuapp.com/save",
             type: 'POST',
@@ -161,12 +170,6 @@ function saveText() {
             success: function(data) {
                 console.log(data);
             }
-        });
-        var value = data.value || 0;
-        sdk.setData({
-            numberOfEdits: numberOfEdits + 1,
-            dataDE: dataDE,
-            dataArray: data.dataArray
         });
     });
 
