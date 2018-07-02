@@ -96,7 +96,7 @@ sdk.getData(function (data) {
     console.log("Current Data 1: "+JSON.stringify(data, null, 2));
     console.log("DataArray 1: "+JSON.stringify(dataArray, null, 2));
     // set value from get
-    if(data){
+    if(Object.keys(data).length === 0){
         $( "#deExternalKey" ).val(data);
 
         // data set 1
@@ -159,9 +159,7 @@ function saveText() {
             timeout: 10000,
             error: function() {},
             success: function(data) {
-                data.forEach(function(item) {
-                    console.log(item);
-                });
+                console.log(data);
             }
         });
         var value = data.value || 0;
