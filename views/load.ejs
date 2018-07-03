@@ -144,7 +144,7 @@ function saveText(keyVal, valVal) {
     sdk.setSuperContent('This is super content: ' + html);
 
     sdk.getData(function (data) {
-        $( "#currentData" ).html(JSON.stringify(data, null, 2));
+        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
 
         console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
         var numberOfEdits = data.numberOfEdits || 0;
@@ -181,6 +181,8 @@ function saveText(keyVal, valVal) {
                 console.log(data);
             }
         });*/
+
+        $( "#currentData" ).html(JSON.stringify(data, null, 2));
     });
 
     sdk.getCentralData(function (central) {
