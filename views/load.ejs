@@ -154,6 +154,7 @@ function saveText(keyVal, valVal) {
         
         function updateObject(key, value){
             data.dataArray.values[key] = value;
+            console.log("Inside updateObject: "+JSON.stringify(data.dataArray, null, 2));
         }
         updateObject(keyVal, valVal);
         console.log("New Pair: "+keyVal+" - "+valVal);
