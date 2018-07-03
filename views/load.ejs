@@ -92,7 +92,7 @@ var dataDE = {de: "Test"};
 
 sdk.getData(function (data) {
     if(typeof dataArray === 'undefined'){
-        var dataArray = [{"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}}];
+        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
         console.log("Initial Load: Set data array");
     }
     
