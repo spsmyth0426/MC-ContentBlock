@@ -152,6 +152,8 @@ function saveText(keyVal, valVal) {
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
         //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
         
+        data.dataArray.values.Name1 = 'test'; 
+
         function updateObject(key, value){
             data.dataArray.values[key] = value;
             console.log("Inside updateObject: "+JSON.stringify(data.dataArray, null, 2));
