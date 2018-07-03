@@ -137,7 +137,7 @@ sdk.getContent(function (content) {
     });
 });
 
-function saveText() {
+function saveText(keyVal, valVal) {
     var html = $( "#deExternalKey" ).val();
     sdk.setContent(html);
     sdk.setSuperContent('This is super content: ' + html);
@@ -149,7 +149,13 @@ function saveText() {
         var numberOfEdits = data.numberOfEdits || 0;
         var dataDE = {de: "Test"};
         //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
-        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
+        //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
+        
+        function updateObject(key, value){
+            data.dataArray.values[key] = value;
+        }
+        updateObject(keyVal, valVal);
+        console.log("New Pair: "+keyVal+" - "+valVal);
         //console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
 
         var value = data.value || 0;
@@ -182,11 +188,15 @@ function saveText() {
 }
     
 $( "#deExternalKey" ).keyup(function() {
-    saveText();
+    var keyVal = {};
+    keyVal["deExternalKey"] = $( "#deExternalKey" ).val();
+    saveText("deExternalKey", $( "#deExternalKey" ).val());
     console.log($( "#deExternalKey" ).val());
 });
 $( "#name-01" ).keyup(function() {
-    saveText();
+    var keyVal = {};
+    keyVal["name-01"] = $( "#name-01" ).val();
+    saveText("name-01", $( "#name-01" ).val());
     console.log($( "#name-01" ).val());
 });
 </script>
