@@ -88,6 +88,7 @@ sdk.getData(function (data) {
     if(typeof data.dataArray === 'undefined'){
         var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}};
         console.log("Initial Load: Set data array");
+        onsole.log("Initial Load data: : "+JSON.stringify(dataArray, null, 2));
     }else{
         console.log("Initial Load: Already Set: "+data.dataArray);
     }
