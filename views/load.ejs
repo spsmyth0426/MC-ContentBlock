@@ -94,31 +94,26 @@ sdk.getData(function (data) {
     console.log("Current Data 1: "+JSON.stringify(data, null, 2));
     console.log("DataArray 1: "+JSON.stringify(dataArray, null, 2));
     // set value from get
-    if(typeof data === 'undefined'){
-        $( "#deExternalKey" ).val(data);
+    if(typeof data.dataArray != 'undefined'){
+        //$( "#deExternalKey" ).val(data);
 
         // data set 1
-        //$( "#name-01" ).val(data.dataArray.values.Name1);
-        //$( "#value-01" ).val(data.dataArray.values.Value1);
+        $( "#name1" ).val(data.dataArray.values.name1);
+        $( "#value1" ).val(data.dataArray.values.value1);
 
         // data set 2
-        //$( "#name-02" ).val(data.dataArray.values.Name2);
-        //$( "#value-02" ).val(data.dataArray.values.Value2);
+        $( "#name2" ).val(data.dataArray.values.name2);
+        $( "#value2" ).val(data.dataArray.values.value2);
 
-        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
-    }else{
-        $( "#currentData" ).html(JSON.stringify(dataArray, null, 2));
     }
 
+    $( "#currentData" ).html(JSON.stringify(data.dataArray, null, 2));
+
     var numberOfEdits = data.numberOfEdits || 0;
-    var dataDE = {de: "Test"};
-    //var dataArray = {"Name1": data.dataArray.Name1, "Value1": data.dataArray.Value1, "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
-    //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
 
     sdk.setData({
         numberOfEdits: numberOfEdits + 1,
-        dataDE: dataDE,
-        dataArray: dataArray
+        dataArray: data.dataArray
     });
     console.log("Current Data 2: "+JSON.stringify(data, null, 2));
     console.log("DataArray 2: "+JSON.stringify(dataArray, null, 2));
@@ -143,11 +138,6 @@ function saveText(keyVal, valVal) {
 
         console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
         var numberOfEdits = data.numberOfEdits || 0;
-        var dataDE = {de: "Test"};
-        //var dataArray = {dataName1: "Test 1 Name", datavalue1: "Test 1 Value", dataName2: "Test 2 Name", datavalue2: "Test 2 Value"};
-        //var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": data.dataArray.values.Name1,"Value1": data.dataArray.values.Value1}};
-        
-        //data.dataArray.values.Name1 = 'test'; 
 
         function updateObject(key, value){
             data.dataArray.values[key] = value;
@@ -160,7 +150,6 @@ function saveText(keyVal, valVal) {
         var value = data.value || 0;
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
-            dataDE: dataDE,
             dataArray: data.dataArray
         });
         console.log("After saveText setData: "+JSON.stringify(data.dataArray.values, null, 2));
