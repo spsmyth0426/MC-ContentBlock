@@ -55,11 +55,11 @@
                     <div class="slds-form-element__row">
                     <div class="slds-form-element slds-size_1-of-2">
                         <label class="slds-form-element__label" for="colName-01">Column Name</label>
-                        <input type="text" id="name1" class="slds-input" />
+                        <input type="text" id="name-01" class="slds-input" />
                     </div>
                     <div class="slds-form-element slds-size_1-of-2">
                         <label class="slds-form-element__label" for="colValue-02">Column Value</label>
-                        <input type="text" id="value1" class="slds-input" />
+                        <input type="text" id="value-01" class="slds-input" />
                     </div>
                     </div>
                 </div>
@@ -69,11 +69,11 @@
                         <div class="slds-form-element__row">
                         <div class="slds-form-element slds-size_1-of-2">
                             <label class="slds-form-element__label" for="colName-01">Column Name</label>
-                            <input type="text" id="name2" class="slds-input" />
+                            <input type="text" id="name-02" class="slds-input" />
                         </div>
                         <div class="slds-form-element slds-size_1-of-2">
                             <label class="slds-form-element__label" for="colValue-02">Column Value</label>
-                            <input type="text" id="value2" class="slds-input" />
+                            <input type="text" id="value-02" class="slds-input" />
                         </div>
                         </div>
                     </div>
@@ -82,13 +82,18 @@
 
 </div>
 <script type="text/javascript">
+//sdk.setSuperContent('Placeholder for simple ampscript section.');
+
+var content = 'testtestetsetset';
+
+var dataDE = {de: "Test"};
+//var dataArray = {"Name1": "Test 1 Name", "Value1": "Test 1 Value", "Name2": "Test 2 Name", "Value2": "Test 2 Value"};
+//var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
 
 sdk.getData(function (data) {
-    if(typeof data.dataArray === 'undefined'){
-        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}};
+    if(typeof dataArray === 'undefined'){
+        var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"Name1": "TestNam1","Value1": "TestVal1"}};
         console.log("Initial Load: Set data array");
-    }else{
-        console.log("Initial Load: Already Set"+data.dataArray);
     }
     
     console.log("Current Data 1: "+JSON.stringify(data, null, 2));
@@ -188,28 +193,17 @@ function saveText(keyVal, valVal) {
     });
 }
     
-// keyup call for key/value pair 1
-$( "#name1" ).keyup(function() {
+$( "#deExternalKey" ).keyup(function() {
     var keyVal = {};
-    keyVal["name1"] = $( "#name1" ).val();
-    saveText("name1", $( "#name1" ).val());
+    keyVal["deExternalKey"] = $( "#deExternalKey" ).val();
+    saveText("deExternalKey", $( "#deExternalKey" ).val());
+    console.log($( "#deExternalKey" ).val());
 });
-$( "#value1" ).keyup(function() {
+$( "#name-01" ).keyup(function() {
     var keyVal = {};
-    keyVal["value1"] = $( "#value1" ).val();
-    saveText("value1", $( "#value1" ).val());
-});
-
-// keyup call for key/value pair 2
-$( "#name2" ).keyup(function() {
-    var keyVal = {};
-    keyVal["name2"] = $( "#name2" ).val();
-    saveText("name2", $( "#name2" ).val());
-});
-$( "#value2" ).keyup(function() {
-    var keyVal = {};
-    keyVal["value2"] = $( "#value2" ).val();
-    saveText("value2", $( "#value2" ).val());
+    keyVal["Name1"] = $( "#name-01" ).val();
+    saveText("Name1", $( "#name-01" ).val());
+    console.log($( "#name-01" ).val());
 });
 </script>
 </body>
