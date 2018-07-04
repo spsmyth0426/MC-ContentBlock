@@ -84,7 +84,7 @@
 <script type="text/javascript">
 
 sdk.getData(function (data) {
-    if(typeof data.dataArray === 'undefined'){
+    if(data && data.dataArray){
         var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}};
         console.log("Initial Load: Set data array");
     }else{
@@ -92,9 +92,8 @@ sdk.getData(function (data) {
     }
     
     console.log("Current Data 1: "+JSON.stringify(data, null, 2));
-    console.log("DataArray 1: "+JSON.stringify(dataArray, null, 2));
     // set value from get
-    if(typeof data.dataArray != 'undefined'){
+    if(data && data.dataArray){
         //$( "#deExternalKey" ).val(data);
 
         // data set 1
@@ -116,7 +115,6 @@ sdk.getData(function (data) {
         dataArray: data.dataArray
     });
     console.log("Current Data 2: "+JSON.stringify(data, null, 2));
-    console.log("DataArray 2: "+JSON.stringify(dataArray, null, 2));
 });
 
 sdk.getContent(function (content) {
