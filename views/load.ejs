@@ -88,15 +88,21 @@ sdk.getData(function (data) {
     if(typeof data.dataArray === 'undefined'){
         var dataArray = {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}};
         console.log("Initial Load: Set data array");
-        sdk.setData({
-            "dataArray": dataArray
-        });
     }else{
         console.log("Initial Load: Already Set: "+data.dataArray);
     }
     
     console.log("Current Data 1: "+JSON.stringify(data, null, 2));
-    // set value from get
+
+    var numberOfEdits = data.numberOfEdits || 0;
+
+    sdk.setData({
+        numberOfEdits: numberOfEdits + 1,
+        dataArray: data.dataArray
+    });
+    console.log("Current Data 2: "+JSON.stringify(data, null, 2));
+
+        // set value from get
     if(typeof data.dataArray === 'undefined'){
         //$( "#deExternalKey" ).val(data);
 
@@ -111,14 +117,6 @@ sdk.getData(function (data) {
     }
 
     $( "#currentData" ).html(JSON.stringify(data.dataArray, null, 2));
-
-    var numberOfEdits = data.numberOfEdits || 0;
-
-    sdk.setData({
-        numberOfEdits: numberOfEdits + 1,
-        dataArray: data.dataArray
-    });
-    console.log("Current Data 2: "+JSON.stringify(data, null, 2));
 });
 
 sdk.getContent(function (content) {
