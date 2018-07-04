@@ -94,6 +94,8 @@ sdk.getData(function (data) {
     
     console.log("Current Data 1: "+JSON.stringify(data, null, 2));
 
+    $( "#currentData" ).html(JSON.stringify(data.dataArray, null, 2));
+
     var numberOfEdits = data.numberOfEdits || 0;
 
     sdk.setData({
@@ -102,7 +104,12 @@ sdk.getData(function (data) {
     });
     console.log("Current Data 2: "+JSON.stringify(data, null, 2));
 
-        // set value from get
+    // set value from get
+    setBlockValues(data);
+});
+
+function setBlockValues(data){
+    console.log("setBlockValues: "+JSON.stringify(data, null, 2));
     if(typeof data.dataArray === 'undefined'){
         //$( "#deExternalKey" ).val(data);
 
@@ -115,9 +122,7 @@ sdk.getData(function (data) {
         $( "#value2" ).val(data.dataArray.values.value2);
 
     }
-
-    $( "#currentData" ).html(JSON.stringify(data.dataArray, null, 2));
-});
+}
 
 sdk.getContent(function (content) {
     // set value from get
