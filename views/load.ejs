@@ -109,6 +109,10 @@ sdk.getData(function (data) {
     setBlockValues(data);
 });
 
+sdk.getData(function (data) {
+    console.log("2nd iteration: "+JSON.stringify(data, null, 2));
+});
+
 function setBlockValues(data){
     console.log("setBlockValues: "+JSON.stringify(data, null, 2));
     if(typeof data.dataArray === 'undefined'){
