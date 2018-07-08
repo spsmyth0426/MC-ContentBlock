@@ -40,6 +40,11 @@
                     <p id="currentData"></p>
                     </br>
                 </div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Response:</label>
+                    <p id="soapResponse"></p>
+                    </br>
+                </div>
         </div>
         <div class="slds-form slds-form_compound">
             <div class="slds-form-element">
@@ -82,6 +87,37 @@
 
 </div>
 <script type="text/javascript">
+
+$(document).ready(function () {
+    var wsUrl = "https://webservice.s7.exacttarget.com/Service.asmx";
+
+    var soapRequest =
+    '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken wsu:Id="UsernameToken-24440876" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>shane.smyth.dev</wsse:Username><wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">cM375!352</wsse:Password></wsse:UsernameToken></wsse:Security></soapenv:Header><soapenv:Body><RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"><RetrieveRequest><ObjectType>DataExtensionObject[MC_CB_Custom_Attributes]</ObjectType><Properties>Id</Properties><Properties>Name1</Properties><Properties>Value1</Properties><Properties>Name2</Properties><Properties>Value2</Properties><Properties>EmailId</Properties><Filter xsi:type="SimpleFilterPart"><Property>EmailId</Property><SimpleOperator>equals</SimpleOperator><Value>1</Value></Filter></RetrieveRequest></RetrieveRequestMsg></soapenv:Body></soapenv:Envelope>';
+
+    $.ajax({
+        type: "POST",
+        url: wsUrl,
+        contentType: "text/xml",
+        dataType: "xml",
+        data: soapRequest,
+        success: processSuccess,
+        error: processError
+    });
+
+    function processSuccess(data, status, req) {
+        //if (status == "success")
+            $("#soapResponse").text($(req));
+    }
+
+    // on page load - retrieve DE values
+    // iterate through values and update fields
+
+// on keyup
+    // post information back to DE
+
+});
+
+
 
 var dataArray = {};
 
