@@ -109,6 +109,10 @@ $(document).ready(function () {
             $("#soapResponse").text($(req));
     }
 
+    function processError(data, status, req) {
+        alert(req.responseText + " " + status);
+    } 
+
     // on page load - retrieve DE values
     // iterate through values and update fields
 
