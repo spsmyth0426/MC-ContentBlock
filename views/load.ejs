@@ -125,7 +125,11 @@
 sdk.getData(function (data) {
     if(!data.dataArray){
         sdk.setData({
-            dataArray: {"deExternalKey": "MC_CB_Custom_Attributes","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
+            dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
+        });
+    }else{
+        sdk.setData({
+            dataArray: {"deExternalKey": "Update","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
         });
     }
 });
