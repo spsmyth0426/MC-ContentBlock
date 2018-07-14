@@ -122,7 +122,7 @@
 });*/
 
 /**********NEW*********/
-/*sdk.getData(function (data) {
+sdk.getData(function (data) {
     if(!data.dataArray){
         sdk.setData({
             dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
@@ -133,7 +133,7 @@
         });
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
-});*/
+});
 
 sdk.getCentralData(function (data) {
     if(!data.dataArray){
@@ -168,7 +168,7 @@ function saveData(keyVal, valVal) {
             sdk.setData({
                 dataArray: dataArray
             });
-            console.log("Inside updateObject: "+JSON.stringify(data.dataArray, null, 2));
+            console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
         }
         updateObject(keyVal, valVal);
         console.log("New Pair: "+keyVal+" - "+valVal);
