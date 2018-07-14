@@ -160,7 +160,7 @@ function saveData(keyVal, valVal) {
 
         function updateObject(keyVal, valVal){
             if(!data.dataArray){
-                var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": key,"value1": value,"name2": "", "value2": ""}}
+                var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": keyVal,"value1": valVal,"name2": "", "value2": ""}}
             }else{
                 data.dataArray.values[keyVal] = valVal;
             }
