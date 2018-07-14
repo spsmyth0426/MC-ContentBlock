@@ -158,8 +158,12 @@ function saveData(keyVal, valVal) {
 
         console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
 
-        function updateObject(key, value){
-            data.dataArray.values[key] = value;
+        function updateObject(keyVal, valVal){
+            if(!data.dataArray){
+                var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": key,"value1": value,"name2": "", "value2": ""}}
+            }else{
+                data.dataArray.values[keyVal] = valVal;
+            }
             console.log("Inside updateObject: "+JSON.stringify(data.dataArray, null, 2));
 
             sdk.setData({
