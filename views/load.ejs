@@ -122,7 +122,7 @@
 });*/
 
 /**********NEW*********/
-sdk.getData(function (data) {
+/*sdk.getData(function (data) {
     if(!data.dataArray){
         sdk.setData({
             dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
@@ -133,9 +133,87 @@ sdk.getData(function (data) {
         });
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
+});*/
+
+sdk.getCentralData(function (data) {
+    if(!data.dataArray){
+        sdk.setCentralData({
+            dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
+        });
+    }else{
+        sdk.setCentralData({
+            dataArray: {"deExternalKey": "Update","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
+        });
+    }
+    console.log(JSON.stringify(data.dataArray, null, 2));
 });
 
+function saveData(keyVal, valVal) {
+    var html = $( "#deExternalKey" ).val();
+    //sdk.setContent(html);
+    //sdk.setSuperContent('This is super content: ' + html);
 
+    sdk.getData(function (data) {
+        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
+
+        console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
+
+        function updateObject(key, value){
+            data.dataArray.values[key] = value;
+            console.log("Inside updateObject: "+JSON.stringify(data.dataArray, null, 2));
+
+            sdk.setData({
+                numberOfEdits: numberOfEdits + 1,
+                dataArray: {"deExternalKey": "Update","keys": {"Id": "1"},"values": {"name1": key,"value1": value,"name2": "", "value2": ""}}
+            });
+        }
+        updateObject(keyVal, valVal);
+        console.log("New Pair: "+keyVal+" - "+valVal);
+        //console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
+
+        
+        console.log("After saveText setData: "+JSON.stringify(data.dataArray.values, null, 2));
+        /*$.ajax({
+            url: "https://shane-cb.herokuapp.com/save",
+            type: 'POST',
+            cache: false,
+            data: data.dataArray,
+            beforeSend: function() {},
+            timeout: 10000,
+            error: function() {},
+            success: function(data) {
+                console.log(data);
+            }
+        });*/
+
+        $( "#currentData" ).html(JSON.stringify(data, null, 2));
+    });
+
+}
+    
+// keyup call for key/value pair 1
+$( "#name1" ).keyup(function() {
+    var keyVal = {};
+    keyVal["name1"] = $( "#name1" ).val();
+    saveData("name1", $( "#name1" ).val());
+});
+$( "#value1" ).keyup(function() {
+    var keyVal = {};
+    keyVal["value1"] = $( "#value1" ).val();
+    saveData("value1", $( "#value1" ).val());
+});
+
+// keyup call for key/value pair 2
+$( "#name2" ).keyup(function() {
+    var keyVal = {};
+    keyVal["name2"] = $( "#name2" ).val();
+    saveData("name2", $( "#name2" ).val());
+});
+$( "#value2" ).keyup(function() {
+    var keyVal = {};
+    keyVal["value2"] = $( "#value2" ).val();
+    saveData("value2", $( "#value2" ).val());
+});
 
 </script>
 </body>
