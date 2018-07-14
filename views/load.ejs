@@ -164,11 +164,11 @@ function saveData(keyVal, valVal) {
             }else{
                 data.dataArray.values[keyVal] = valVal;
             }
-            console.log("Inside updateObject: "+JSON.stringify(data.dataArray, null, 2));
 
             sdk.setData({
                 dataArray: dataArray
             });
+            console.log("Inside updateObject: "+JSON.stringify(data.dataArray, null, 2));
         }
         updateObject(keyVal, valVal);
         console.log("New Pair: "+keyVal+" - "+valVal);
