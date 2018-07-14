@@ -138,11 +138,11 @@ sdk.getData(function (data) {
 sdk.getCentralData(function (data) {
     if(!data.dataArray){
         sdk.setCentralData({
-            dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
+            dataArray: {"deExternalKey": "Initial Central","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
         });
     }else{
         sdk.setCentralData({
-            dataArray: {"deExternalKey": "Update","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
+            dataArray: {"deExternalKey": "Update Central","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
         });
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
