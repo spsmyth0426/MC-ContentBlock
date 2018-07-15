@@ -124,6 +124,7 @@
 /**********NEW*********/
 sdk.getData(function (data) {
     var numberOfEdits = data.numberOfEdits || 0;
+    console.log(JSON.stringify(numberOfEdits, null, 2));
     if(numberOfEdits == 0){
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
