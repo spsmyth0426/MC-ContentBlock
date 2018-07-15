@@ -11,9 +11,7 @@
     <script data-main="js/blocksdk.js" src="js/blocksdk.js"></script>
     <script type="text/javascript">
         
-        console.log( "ready!" );
-        var sdk = new SDK();
-        console.log("SDK: "+ sdk);            
+        var sdk = new SDK();          
        
     </script>
 
@@ -122,13 +120,17 @@
 });*/
 
 /**********NEW*********/
+sdk.getContent(function (content) {
+    sdk.setContent(content);
+    function saveContent(html){
+        sdk.setContent(html);
+		//sdk.setSuperContent('This is super content: ' + html);
+    }
+});
 sdk.getData(function (data) {
     var numberOfEdits = data.numberOfEdits || 0;
     console.log(JSON.stringify(numberOfEdits, null, 2));
-    sdk.setData({
-            numberOfEdits: numberOfEdits + 1,
-            dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
-        });
+
     if(numberOfEdits = 0){
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
@@ -202,6 +204,10 @@ function saveData(keyVal, valVal) {
 
 }
     
+$( "#deExternalKey" ).keyup(function() {
+    saveContent($( "#deExternalKey" ).val());
+});
+
 // keyup call for key/value pair 1
 $( "#name1" ).keyup(function() {
     var keyVal = {};
