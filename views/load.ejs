@@ -120,13 +120,13 @@
 });*/
 
 /**********NEW*********/
-sdk.getContent(function (content) {
+/*sdk.getContent(function (content) {
     sdk.setContent(content);
     function saveContent(html){
         sdk.setContent(html);
 		//sdk.setSuperContent('This is super content: ' + html);
     }
-});
+});*/
 sdk.getData(function (data) {
     var numberOfEdits = data.numberOfEdits || 0;
     console.log(JSON.stringify(numberOfEdits, null, 2));
@@ -170,7 +170,8 @@ function saveData(keyVal, valVal) {
 
         function updateObject(keyVal, valVal){
             if(!data.dataArray){
-                var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": keyVal,"value1": valVal,"name2": "", "value2": ""}}
+                data.dataArray.values[keyVal] = valVal;
+                //var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": valVal,"value1": "","name2": "", "value2": ""}}
             }else{
                 data.dataArray.values[keyVal] = valVal;
             }
