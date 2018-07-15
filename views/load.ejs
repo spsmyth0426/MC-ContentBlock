@@ -123,20 +123,23 @@
 
 /**********NEW*********/
 sdk.getData(function (data) {
-    if(!data.dataArray){
+    var numberOfEdits = data.numberOfEdits || 0;
+    if(numberOfEdits == 0){
         sdk.setData({
+            numberOfEdits: numberOfEdits + 1,
             dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
         });
     }else{
         sdk.setData({
+            numberOfEdits: numberOfEdits + 1,
             dataArray: {"deExternalKey": "Update","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
         });
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
 
-sdk.getCentralData(function (data) {
-    if(!data.dataArray){
+/*sdk.getCentralData(function (data) {
+    if(!data.dataArray && numberOfEdits == 0){
         sdk.setCentralData({
             dataArray: {"deExternalKey": "Initial Central","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
         });
@@ -146,7 +149,7 @@ sdk.getCentralData(function (data) {
         });
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
-});
+});*/
 
 function saveData(keyVal, valVal) {
     var html = $( "#deExternalKey" ).val();
