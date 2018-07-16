@@ -169,6 +169,7 @@ function saveData(keyVal, valVal) {
         function updateObject(keyVal, valVal){
             if(!data.dataArray){
                 //var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": valVal,"value1": "","name2": "", "value2": ""}}
+                console.log("Causing trouble!");
             }else{
                 var dataArray = data.dataArray.values[keyVal] = valVal;
             }
