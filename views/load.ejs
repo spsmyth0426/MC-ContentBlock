@@ -137,10 +137,8 @@ sdk.getData(function (data) {
             dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
         });
     }else{
-        sdk.setData({
-            numberOfEdits: numberOfEdits + 1,
-            dataArray: {"deExternalKey": "Update","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
-        });
+        console.log('DataArray exists, populate fields.');
+        $( "#name1" ).val(JSON.stringify(data.dataArray.values.name1, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
