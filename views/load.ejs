@@ -172,7 +172,7 @@ function saveData(keyVal, valVal) {
                 //var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": valVal,"value1": "","name2": "", "value2": ""}}
                 console.log("Causing trouble!");
             }else{
-                var dataArray = data.dataArray.values[keyVal] = valVal;
+                data.dataArray.values[keyVal] = valVal;
                 console.log("Adding new values: "+JSON.stringify(dataArray, null, 2));
             }
 
