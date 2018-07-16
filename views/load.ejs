@@ -131,7 +131,7 @@ sdk.getData(function (data) {
     var numberOfEdits = data.numberOfEdits || 0;
     console.log(JSON.stringify(numberOfEdits, null, 2));
 
-    if(numberOfEdits = 0){
+    if(numberOfEdits == 0){
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
             dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
