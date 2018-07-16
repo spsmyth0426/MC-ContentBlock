@@ -167,6 +167,7 @@ function saveData(keyVal, valVal) {
         console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
 
         function updateObject(keyVal, valVal){
+            var numberOfEdits = data.numberOfEdits || 0;
             if(!data.dataArray){
                 //var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": valVal,"value1": "","name2": "", "value2": ""}}
                 console.log("Causing trouble!");
@@ -175,6 +176,7 @@ function saveData(keyVal, valVal) {
             }
 
             sdk.setData({
+                numberOfEdits: numberOfEdits + 1,
                 dataArray: dataArray
             });
             console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
