@@ -173,6 +173,7 @@ function saveData(keyVal, valVal) {
                 console.log("Causing trouble!");
             }else{
                 var dataArray = data.dataArray.values[keyVal] = valVal;
+                console.log("Adding new values: "+JSON.stringify(dataArray, null, 2));
             }
 
             sdk.setData({
