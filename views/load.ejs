@@ -138,7 +138,13 @@ sdk.getData(function (data) {
         });
     }else{
         console.log('DataArray exists, populate fields.');
+        $( "#currentData" ).html(JSON.stringify(data, null, 2));
+
         $( "#name1" ).val(JSON.stringify(data.dataArray.values.name1, null, 2));
+        $( "#value1" ).val(JSON.stringify(data.dataArray.values.value1, null, 2));
+
+        $( "#name2" ).val(JSON.stringify(data.dataArray.values.name2, null, 2));
+        $( "#value2" ).val(JSON.stringify(data.dataArray.values.value2, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
@@ -206,8 +212,8 @@ function saveData(keyVal, valVal) {
 
 }
     
-$( "#deExternalKey" ).keyup(function() {
-    saveContent($( "#deExternalKey" ).val());
+$( "#deExternalKey" ).focusout(function() {
+    //saveData($( "#deExternalKey" ).val());
 });
 
 // keyup call for key/value pair 1
@@ -216,19 +222,19 @@ $( "#name1" ).focusout(function() {
     keyVal["name1"] = $( "#name1" ).val();
     saveData("name1", $( "#name1" ).val());
 });
-$( "#value1" ).keyup(function() {
+$( "#value1" ).focusout(function() {
     var keyVal = {};
     keyVal["value1"] = $( "#value1" ).val();
     saveData("value1", $( "#value1" ).val());
 });
 
 // keyup call for key/value pair 2
-$( "#name2" ).keyup(function() {
+$( "#name2" ).focusout(function() {
     var keyVal = {};
     keyVal["name2"] = $( "#name2" ).val();
     saveData("name2", $( "#name2" ).val());
 });
-$( "#value2" ).keyup(function() {
+$( "#value2" ).focusout(function() {
     var keyVal = {};
     keyVal["value2"] = $( "#value2" ).val();
     saveData("value2", $( "#value2" ).val());
