@@ -39,6 +39,11 @@ app.get('/load', function(request, response, next) {
   });
 });
 
+app.get('/sports', function(request, response, next) {
+  response.render('sportsBlock.ejs', {
+  });
+});
+
 app.post('/save', routes.save );
 
 http.createServer(app).listen(app.get('port'), function(){

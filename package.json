@@ -20,6 +20,7 @@
     "fuel-rest": "^3.0.3",
     "http": "0.0.0",
     "https": "^1.0.0",
+    "mysportsfeeds-node": "^1.0.0",
     "path": "^0.12.7",
     "request": "^2.87.0",
     "util": "^0.11.0"
