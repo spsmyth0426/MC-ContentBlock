@@ -179,6 +179,8 @@ $( "#league, #player" ).focusout(function() {
         //saveData("name1", $( "#name1" ).val());
         var wsUrl = "https://shane-cb.herokuapp.com/sportsEndPoint";
 
+        console.log('form: '+$("#sports").serialize());
+
         $.ajax({
             type: "POST",
             url: wsUrl,

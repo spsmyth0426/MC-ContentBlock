@@ -46,7 +46,7 @@ app.get('/sports', function(request, response, next) {
 
 app.post('/save', routes.save );
 
-app.post('/sportsEndPoint', routes.save );
+app.post('/sportsEndPoint', routes.sportsEndPoint );
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Shanes Express server listening on port ' + app.get('port'));

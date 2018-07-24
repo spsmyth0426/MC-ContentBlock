@@ -13,7 +13,7 @@ msf.authenticate("spsmyth0426", "kf45wxB6");
 /*
  * GET home page.
  */
-exports.save = function(req, res){
+exports.sportsEndPoint = function(req, res){
     /*var deExternalKey = req.body.deExternalKey;
     var keys = req.body.keys;
     var values = req.body.values;
@@ -27,7 +27,7 @@ exports.save = function(req, res){
 /**********************/
 // CALL FOR AUTHORIZATION
 /**********************/
-function authToken(clientId, clientSecret, deExternalKey, keys, values){
+/*function authToken(clientId, clientSecret, deExternalKey, keys, values){
     var options = {
         url: 'http://auth.exacttargetapis.com/v1/requestToken',
         method: 'POST',
@@ -50,12 +50,12 @@ function authToken(clientId, clientSecret, deExternalKey, keys, values){
             console.log('Bearer: Error');
         }
     })
-}
+}*/
 
 /**********************/
 // POST DATA
 /**********************/
-function postDE(accessToken, deExternalKey, keys, values){
+/*function postDE(accessToken, deExternalKey, keys, values){
     var optionsDE = {
         url: 'https://www.exacttargetapis.com/hub/v1/dataevents/key:MC_CB_Custom_Attributes/rowset',
         method: 'POST',
@@ -67,15 +67,6 @@ function postDE(accessToken, deExternalKey, keys, values){
             keys,
             values
          }],
-         /*body: [{
-            "keys":{
-                "Id": "194893"
-            },
-            "values":{
-                "Name": "TestName",
-                "Value": 'TestValue'
-            }
-         }],*/
         json: true
     }
     console.log(optionsDE);
@@ -89,4 +80,4 @@ function postDE(accessToken, deExternalKey, keys, values){
             console.log(body);
         }
     })
-}
+}*/
