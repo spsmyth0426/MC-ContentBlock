@@ -8,7 +8,7 @@ var http        = require('http');
 var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
-//var activity    = require('./routes/activity');
+var sports    = require('./routes/sports');
 
 var app = express();
 
@@ -46,7 +46,7 @@ app.get('/sportsBlock', function(request, response, next) {
 
 app.post('/save', routes.save );
 
-app.post('/sportsEndPoint', routes.sports );
+app.post('/sportsEndPoint', sports.sportsEndPoint );
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Shanes Express server listening on port ' + app.get('port'));
