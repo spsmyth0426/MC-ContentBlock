@@ -31,10 +31,11 @@
 
 </head>
 <body>
+<form id="sports">    
 <div id="step1" class="step">
         <div class="slds-form slds-form_compound">
             <div class="slds-form-element">
-                <label class="slds-form-element__label" for="select-01">Select Label</label>
+                <label class="slds-form-element__label" for="league">Select Label</label>
                 <div class="slds-form-element__control">
                   <div class="slds-select_container">
                     <select class="slds-select" id="league">
@@ -46,7 +47,7 @@
                 </div>
               </div>
               <div class="slds-form-element">
-                <label class="slds-form-element__label" for="select-01">Select Label</label>
+                <label class="slds-form-element__label" for="player">Select Label</label>
                 <div class="slds-form-element__control">
                   <div class="slds-select_container">
                     <select class="slds-select" id="player">
@@ -60,11 +61,12 @@
               </div>
                 <div class="slds-form-element">
                     <label class="slds-form-element__label" for="input-id-01">Response:</label>
-                    <p id="soapResponse"></p>
+                    <p id="restResoonse"></p>
                     </br>
                 </div>
         </div>
 </div>
+</form>
 <script type="text/javascript">
 
 /*$(document).ready(function () {
@@ -130,18 +132,6 @@ sdk.getData(function (data) {
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
 
-/*sdk.getCentralData(function (data) {
-    if(!data.dataArray && numberOfEdits == 0){
-        sdk.setCentralData({
-            dataArray: {"deExternalKey": "Initial Central","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
-        });
-    }else{
-        sdk.setCentralData({
-            dataArray: {"deExternalKey": "Update Central","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
-        });
-    }
-    console.log(JSON.stringify(data.dataArray, null, 2));
-});*/
 
 function saveData(keyVal, valVal) {
     var html = $( "#deExternalKey" ).val();
@@ -175,50 +165,41 @@ function saveData(keyVal, valVal) {
 
         
         console.log("After saveText setData: "+JSON.stringify(data.dataArray, null, 2));
-        /*$.ajax({
-            url: "https://shane-cb.herokuapp.com/save",
-            type: 'POST',
-            cache: false,
-            data: data.dataArray,
-            beforeSend: function() {},
-            timeout: 10000,
-            error: function() {},
-            success: function(data) {
-                console.log(data);
-            }
-        });*/
 
         $( "#currentData" ).html(JSON.stringify(data, null, 2));
     });
 
 }
-    
-$( "#deExternalKey" ).focusout(function() {
-    //saveData($( "#deExternalKey" ).val());
-});
 
 // keyup call for key/value pair 1
-$( "#name1" ).focusout(function() {
-    var keyVal = {};
-    keyVal["name1"] = $( "#name1" ).val();
-    saveData("name1", $( "#name1" ).val());
-});
-$( "#value1" ).focusout(function() {
-    var keyVal = {};
-    keyVal["value1"] = $( "#value1" ).val();
-    saveData("value1", $( "#value1" ).val());
-});
+$( "#league, #player" ).focusout(function() {
+    if( $("#league").val() === "" && $("#player").val() === "" ) {
+        //var keyVal = {};
+        //keyVal["name1"] = $( "#name1" ).val();
+        //saveData("name1", $( "#name1" ).val());
+        var wsUrl = "https://shane-cb.herokuapp.com/sportsEndPoint";
 
-// keyup call for key/value pair 2
-$( "#name2" ).focusout(function() {
-    var keyVal = {};
-    keyVal["name2"] = $( "#name2" ).val();
-    saveData("name2", $( "#name2" ).val());
-});
-$( "#value2" ).focusout(function() {
-    var keyVal = {};
-    keyVal["value2"] = $( "#value2" ).val();
-    saveData("value2", $( "#value2" ).val());
+        $.ajax({
+            type: "POST",
+            url: wsUrl,
+            contentType: "text/xml",
+            dataType: "xml",
+            data: $("#sports").serialize(),
+            success: processSuccess,
+            error: processError
+        });
+
+        function processSuccess(data, status, req) {
+            //if (status == "success")
+                $("#restResoonse").text($(req));
+        }
+
+        function processError(data, status, req) {
+            alert(req.responseText + " " + status);
+        } 
+    }else{
+        console.log('League or Player is empty');
+    }
 });
 
 </script>
