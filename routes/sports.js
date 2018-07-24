@@ -6,7 +6,7 @@ var request     = require('request');
 var util = require('util');
 
 var MySportsFeeds = require("mysportsfeeds-node");
-var msf = new MySportsFeeds("1.1", true);
+var msf = new MySportsFeeds("1.2", true,  null);
 msf.authenticate("spsmyth0426", "kf45wxB6");
 
 
