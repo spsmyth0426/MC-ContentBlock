@@ -39,14 +39,14 @@ app.get('/load', function(request, response, next) {
   });
 });
 
-app.get('/sports', function(request, response, next) {
+app.get('/sportsBlock', function(request, response, next) {
   response.render('sportsBlock.ejs', {
   });
 });
 
 app.post('/save', routes.save );
 
-app.post('/sportsEndPoint', routes.sportsEndPoint );
+app.post('/sportsEndPoint', sports );
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Shanes Express server listening on port ' + app.get('port'));
