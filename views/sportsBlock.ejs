@@ -102,14 +102,7 @@
 
 });*/
 
-/**********NEW*********/
-/*sdk.getContent(function (content) {
-    sdk.setContent(content);
-    function saveContent(html){
-        sdk.setContent(html);
-		//sdk.setSuperContent('This is super content: ' + html);
-    }
-});*/
+
 sdk.getData(function (data) {
     var numberOfEdits = data.numberOfEdits || 0;
     console.log(JSON.stringify(numberOfEdits, null, 2));
@@ -117,26 +110,16 @@ sdk.getData(function (data) {
     if(numberOfEdits == 0){
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
-            dataArray: {"deExternalKey": "Initial","keys": {"Id": "1"},"values": {"name1": "","value1": "","name2": "", "value2": ""}}
+            dataArray: {"league": "nba", "season": "2016-2017-regular", "player":"stephen-curry"}
         });
     }else{
         console.log('DataArray exists, populate fields.');
-        $( "#currentData" ).html(JSON.stringify(data, null, 2));
-
-        $( "#name1" ).val(JSON.stringify(data.dataArray.values.name1, null, 2));
-        $( "#value1" ).val(JSON.stringify(data.dataArray.values.value1, null, 2));
-
-        $( "#name2" ).val(JSON.stringify(data.dataArray.values.name2, null, 2));
-        $( "#value2" ).val(JSON.stringify(data.dataArray.values.value2, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
 
 
-function saveData(keyVal, valVal) {
-    var html = $( "#deExternalKey" ).val();
-    //sdk.setContent(html);
-    //sdk.setSuperContent('This is super content: ' + html);
+function saveContent(data) {
 
     sdk.getData(function (data) {
         //$( "#currentData" ).html(JSON.stringify(data, null, 2));
@@ -149,7 +132,7 @@ function saveData(keyVal, valVal) {
                 //var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": valVal,"value1": "","name2": "", "value2": ""}}
                 console.log("Causing trouble!");
             }else{
-                data.dataArray.values[keyVal] = valVal;
+                data.dataArray.keyVal = valVal;
                 console.log("Adding new values: "+JSON.stringify(data, null, 2));
             }
 
@@ -167,6 +150,20 @@ function saveData(keyVal, valVal) {
         console.log("After saveText setData: "+JSON.stringify(data.dataArray, null, 2));
 
         $( "#currentData" ).html(JSON.stringify(data, null, 2));
+    });
+
+    sdk.getContent(function (content) {
+        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
+
+        console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
+        console.log("Inside SaveContent - response data: "+JSON.stringify(data, null, 2));
+
+        content += data;
+        sdk.setContent(content, function (setContent) {
+            // block content is now its original content + '.'
+            console.log("setContent: "+JSON.stringify(setContent, null, 2));
+        });
+        
     });
 
 }
@@ -193,7 +190,8 @@ $( "#league, #player" ).focusout(function() {
 
         function processSuccess(data, status, req) {
             //if (status == "success")
-                $("#restResoonse").text($(req));
+            $("#restResoonse").text($(req));
+            //saveContent(data);
         }
 
         function processError(data, status, req) {
