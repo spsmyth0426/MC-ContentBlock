@@ -6,7 +6,7 @@ var request     = require('request');
 var util = require('util');
 
 var MySportsFeeds = require("mysportsfeeds-node");
-var msf = new MySportsFeeds("1.2", true,  null);
+var msf = new MySportsFeeds("1.2", true);
 msf.authenticate("c2791441-c7ce-492e-b5b4-d47ce8", "kf45wxB6");
 
 
@@ -19,7 +19,7 @@ exports.sportsEndPoint = function(req, res){
     var values = req.body.values;
     console.log(deExternalKey);*/
 
-    var data = msf.getData('nba', '2017-2018-regular', 'player_gamelogs', 'json', {player: 'stephen-curry'});
+    var data = msf.getData('nba', '2017-2018-regular', 'player_gamelogs', 'json', {});
 
     //pullSports('nba', '2016-2017-regular', 'player_gamelogs', 'json', "{player: 'stephen-curry'}");
 
