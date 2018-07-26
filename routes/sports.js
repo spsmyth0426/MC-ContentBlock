@@ -21,7 +21,7 @@ exports.sportsEndPoint = function(req, res){
 
     //var data = msf.getData('nba', '2017-2018-regular', 'player_gamelogs', 'json', {});
 
-    pullSports('nba', '2018-playoff', 'player_gamelogs', 'json?team=bos', "{player: 'stephen-curry'}");
+    pullSports('nba', '2018-playoff', 'player_gamelogs', 'json?team=bos&limit=200', "{player: 'stephen-curry'}");
 
     //console.log('NBA: '+JSON.stringify(data, null, 2));
 };
