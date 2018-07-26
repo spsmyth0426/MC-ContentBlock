@@ -24,7 +24,6 @@ exports.sportsEndPoint = function(req, res){
     pullSports('nba', '2018-playoff', 'player_gamelogs', 'json?team=bos&limit=200', "{player: 'stephen-curry'}");
 
     //console.log('NBA: '+JSON.stringify(data, null, 2));
-    res.send(200, 'Execute');
 };
 
 function pullSports(league, season, route, format, params){
@@ -51,4 +50,5 @@ function pullSports(league, season, route, format, params){
             console.log(body);
         }
     })
+    res.send(200, 'Execute');
 }
