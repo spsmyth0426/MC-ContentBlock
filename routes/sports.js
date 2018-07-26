@@ -19,31 +19,32 @@ exports.sportsEndPoint = function(req, res){
     var values = req.body.values;
     console.log(deExternalKey);*/
 
-    var data = msf.getData('nba', '2017-2018-regular', 'player_gamelogs', 'json', {});
+    //var data = msf.getData('nba', '2017-2018-regular', 'player_gamelogs', 'json', {});
 
-    //pullSports('nba', '2016-2017-regular', 'player_gamelogs', 'json', "{player: 'stephen-curry'}");
+    pullSports('nba', '2016-2017-regular', 'player_gamelogs', 'json', "{player: 'stephen-curry'}");
 
     console.log('NBA: '+JSON.stringify(data, null, 2));
 };
 
 function pullSports(league, season, route, format, params){
-    var optionsDE = {
-        url: 'https://api.mysportsfeeds.com/v2.0/pull/'+league+'/'+season+'/'+route+'.'+format,
-        method: 'POST',
+    var options = {
+        url: 'https://api.mysportsfeeds.com/v1.2/pull/'+league+'/'+season+'/'+route+'.'+format,
+        method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+accessToken
+            'Authorization': 'Basic YzI3OTE0NDEtYzdjZS00OTJlLWI1YjQtZDQ3Y2U4OmtmNDV3eEI2'
         },
         //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
         body: [ { "items": inArgs } ],
         json: true
     }
-    console.log(optionsDE);
+    console.log(options);
 
-    request(optionsDE, function (error, response, body) {
+    request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             // Print out the response body
             console.log('Post to DE successful');
+            console.log('Response: '+response);
+            console.log('Body: '+body);
         }else{
             console.log('Post to DE: error');
             console.log(body);
