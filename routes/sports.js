@@ -43,8 +43,8 @@ function pullSports(league, season, route, format, params){
         if (!error && response.statusCode == 200) {
             // Print out the response body
             console.log('Post to DE successful');
-            console.log('Response: '+response);
-            console.log('Body: '+body);
+            console.log('Response: '+JSON.stringify(response, null, 2));
+            console.log('Body: '+JSON.stringify(body, null, 2));
         }else{
             console.log('Post to DE: error');
             console.log(body);
