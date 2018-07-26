@@ -34,7 +34,7 @@ function pullSports(league, season, route, format, params){
             'Authorization': 'Basic YzI3OTE0NDEtYzdjZS00OTJlLWI1YjQtZDQ3Y2U4OmtmNDV3eEI2'
         },
         //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
-        body: [ { "items": inArgs } ],
+        //body: [ { "items": inArgs } ],
         json: true
     }
     console.log(options);
