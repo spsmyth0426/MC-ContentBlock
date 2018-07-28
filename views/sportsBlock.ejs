@@ -196,6 +196,7 @@ $( "#league, #player" ).focusout(function() {
 
         function processError(data, status, req) {
             alert(req.responseText + " " + status);
+            console.log(JSON.stringify(data, null, 2));
         } 
     }else{
         console.log('League or Player is empty');
