@@ -179,7 +179,7 @@ $( "#league, #player" ).focusout(function() {
         console.log($("#sports").serialize());
 
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: wsUrl,
             contentType: "text/json",
             dataType: "json",
