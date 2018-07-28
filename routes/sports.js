@@ -45,12 +45,12 @@ function pullSports(league, season, route, format, params){
             console.log('Post to DE successful');
             console.log('Response: '+JSON.stringify(response, null, 2));
             console.log('Body: '+JSON.stringify(body, null, 2));
-            //response.render(200, 'Execute');
+            response.send(200, 'Execute');
         }else{
             console.log('Post to DE: error');
             console.log(body);
             //response.render(500, 'Error');
         }
     })
-    return res.send(200, 'Execute');
+    //return res.send(200, 'Execute');
 }
