@@ -3,7 +3,6 @@
 // Deps
 var activity = require('./activity');
 var request     = require('request');
-var util = require('util');
 
 var MySportsFeeds = require("mysportsfeeds-node");
 var msf = new MySportsFeeds("1.2", true);
@@ -33,13 +32,12 @@ function pullSports(league, season, route, format, params){
         headers: {
             'Authorization': 'Basic YzI3OTE0NDEtYzdjZS00OTJlLWI1YjQtZDQ3Y2U4OmtmNDV3eEI2'
         },
-        //form: {'values': {'ContactId': contact, 'Status': 'Confirmed', 'ResponseId': responseId}}
-        //body: [ { "items": inArgs } ],
         json: true
     }
     console.log(options);
 
     request(options, function (error, response, body) {
+        console.log(response.statusCode);
         if (!error && response.statusCode == 200) {
             // Print out the response body
             console.log('Post to DE successful');
