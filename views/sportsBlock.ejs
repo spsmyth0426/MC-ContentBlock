@@ -181,8 +181,8 @@ $( "#league, #player" ).focusout(function() {
         $.ajax({
             type: "POST",
             url: wsUrl,
-            contentType: "text/xml",
-            dataType: "xml",
+            contentType: "text/json",
+            dataType: "json",
             data: $("#sports").serialize(),
             success: processSuccess,
             error: processError
