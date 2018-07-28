@@ -27,7 +27,8 @@ exports.sportsEndPoint = function(req, res){
 
 function pullSports(league, season, route, format, params){
     var options = {
-        url: 'https://api.mysportsfeeds.com/v1.2/pull/'+league+'/'+season+'/'+route+'.'+format,
+        //url: 'https://api.mysportsfeeds.com/v1.2/pull/'+league+'/'+season+'/'+route+'.'+format,
+        url: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2018-playoff/player_gamelogs.json?team=det',
         method: 'GET',
         headers: {
             'Authorization': 'Basic YzI3OTE0NDEtYzdjZS00OTJlLWI1YjQtZDQ3Y2U4OmtmNDV3eEI2'
