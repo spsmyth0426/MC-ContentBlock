@@ -183,9 +183,10 @@ $( "#league, #player" ).focusout(function() {
             url: wsUrl,
             contentType: "text/json",
             dataType: "json",
-            data: $("#sports").serialize(),
-            success: processSuccess,
-            error: processError
+            data: $("#sports").serialize()
+        })
+        .done(function( msg ) {
+            alert( "Data Saved: " + msg );
         });
 
         function processSuccess(data, status, req) {
