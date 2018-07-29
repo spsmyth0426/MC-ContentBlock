@@ -194,7 +194,8 @@ $( "#league, #player" ).focusout(function() {
 
         function processSuccess(data, status, req) {
             //if (status == "success")
-            $("#restResoonse").text($(JSON.stringify(req, null, 2)));
+            $("#restResoonse").text(JSON.stringify(req, null, 2)));
+            console.log(data);
             //saveContent(data);
         }
 
