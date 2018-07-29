@@ -174,16 +174,16 @@ $( "#league, #player" ).focusout(function() {
         //var keyVal = {};
         //keyVal["name1"] = $( "#name1" ).val();
         //saveData("name1", $( "#name1" ).val());
-        var wsUrl = "https://shane-cb.herokuapp.com/sportsEndPoint";
+        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nba/2018-playoff/player_gamelogs.json?team=det";
 
         console.log($("#sports").serialize());
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: wsUrl,
             contentType: "text/json",
             dataType: "json",
-            data: $("#sports").serialize()
+            //data: $("#sports").serialize()
         })
         .done(function( msg ) {
             alert( "Data Saved: " + msg );
