@@ -34,31 +34,20 @@
 <form id="sports">    
 <div id="step1" class="step">
         <div class="slds-form slds-form_compound">
-            <div class="slds-form-element">
-                <label class="slds-form-element__label" for="league">Leauge</label>
-                <div class="slds-form-element__control">
-                  <div class="slds-select_container">
-                    <select class="slds-select" id="league">
-                      <option value="">Please select</option>
-                      <option value="NFL">NFL</option>
-                      <option value="NBA">NBA</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="slds-form-element">
-                <label class="slds-form-element__label" for="team">Team</label>
-                <div class="slds-form-element__control">
-                  <div class="slds-select_container">
-                    <select class="slds-select" id="team">
-                      <option value="">Please select</option>
-                      <option value="bos">Boston Celtics</option>
-                      <option value="tor">Toronto Raptors</option>
-                      <option value="hou">Houston Rockets</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+                <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="league">Choose</label>
+                        <div class="slds-form-element__control">
+                          <div class="slds-select_container">
+                            <select class="slds-select" id="league">
+                              <option value="">Please select</option>
+                              <option value="nba/2018-playoff/player_gamelogs.json?team=bos">NBA - 2018 - Boston Celtics</option>
+                              <option value="nba/2018-playoff/player_gamelogs.json?team=tor">NBA - 2018 - Toronto Raptors</option>
+                              <option value="nba/2018-playoff/player_gamelogs.json?team=hou">NBA - 2018 - Houston Rockets</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+              <br>
                 <div class="slds-form-element">
                     <label class="slds-form-element__label" for="input-id-01">Response:</label>
                     <p id="restResoonse"></p>
@@ -169,13 +158,13 @@ function saveContent(data) {
 }
 
 // keyup call for key/value pair 1
-$( "#league, #team" ).focusout(function() {
-    if( $("#team").val() === "bos" ) {
+$( "#league" ).focusout(function() {
+    if( $("#league").val() != null ) {
         //var keyVal = {};
         //keyVal["name1"] = $( "#name1" ).val();
         //saveData("name1", $( "#name1" ).val());
         
-        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val()+"/2018-playoff/player_gamelogs.json?team="+$('#team').val()+"&limit=20";
+        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val();
 
         console.log($("#sports").serialize());
 
