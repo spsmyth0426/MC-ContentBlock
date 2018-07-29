@@ -206,7 +206,7 @@ $( "#league" ).focusout(function() {
             console.log(data);
             
             $("#sampleContent").html("<span>");
-                    $.each(data, function(index, element) {
+                    $.each($.parseJSON(data), function(index, element) {
                         $("#sampleContent").html("<p>"+element+"</p>");
                         //alert(element.timeStamp); 
                     });
