@@ -205,9 +205,9 @@ $( "#league" ).focusout(function() {
             $("#restResoonse").text(JSON.stringify(data, null, 2));
             console.log(data);
             
-            var jsonObj = JSON.parse(data);
+            //var jsonObj = JSON.parse(data);
             $("#sampleContent").html("<span>");
-                    $.each(jsonObj, function(index, element) {
+                    $.each(data, function(index, element) {
                         $("#sampleContent").html("<p>"+element+"</p>");
                         //alert(element.timeStamp); 
                     });
