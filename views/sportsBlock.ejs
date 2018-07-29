@@ -180,14 +180,14 @@ $( "#league, #player" ).focusout(function() {
         console.log($("#sports").serialize());
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             headers: {
                 'Authorization': 'Basic YzI3OTE0NDEtYzdjZS00OTJlLWI1YjQtZDQ3Y2U4OmtmNDV3eEI2'
             },
             url: wsUrl,
             contentType: "text/json",
             dataType: "json",
-            data: $("#sports").serialize(),
+            //data: $("#sports").serialize(),
             success: processSuccess,
             error: processError
         });
