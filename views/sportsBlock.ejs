@@ -207,9 +207,13 @@ $( "#league" ).focusout(function() {
             
             //var jsonObj = JSON.parse(data);
             $("#sampleContent").html("<span>");
-                    $.each(data, function(index, element) {
+                    /*$.each(data, function(index, element) {
                         $("#sampleContent").html("<p>"+element+"</p>");
                         //alert(element.timeStamp); 
+                    });*/
+                    data = $.parseJSON(data);
+                    $.each(data, function(i, item) {
+                        alert(item);
                     });
             $("#sampleContent").html("</span>");
 
