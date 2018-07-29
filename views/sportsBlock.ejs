@@ -170,12 +170,12 @@ function saveContent(data) {
 
 // keyup call for key/value pair 1
 $( "#league, #player" ).focusout(function() {
-    if( $("#league").val() === "NFL" ) {
+    if( $("#league").val() === "NBA" ) {
         //var keyVal = {};
         //keyVal["name1"] = $( "#name1" ).val();
         //saveData("name1", $( "#name1" ).val());
         
-        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nba/2018-playoff/player_gamelogs.json?team=det";
+        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val()+"/2018-playoff/player_gamelogs.json?team=bos";
 
         console.log($("#sports").serialize());
 
