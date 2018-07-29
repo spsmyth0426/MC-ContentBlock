@@ -47,12 +47,18 @@
                           </div>
                         </div>
                       </div>
-              <br>
+            <br>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Sample Content:</label>
+                    <p id="sampleContent"></p>
+                    </br>
+                </div>
+            <br>
                 <div class="slds-form-element">
                     <label class="slds-form-element__label" for="input-id-01">Response:</label>
                     <p id="restResoonse"></p>
                     </br>
-                </div>
+                </div>  
         </div>
 </div>
 </form>
@@ -198,7 +204,13 @@ $( "#league" ).focusout(function() {
             //if (status == "success")
             $("#restResoonse").text(JSON.stringify(data, null, 2));
             console.log(data);
-
+            
+            $("#restResoonse").html("<span>");
+                    $.each(data, function(index, element) {
+                        $("#restResoonse").html("<p>"+element+"</p>");
+                        //alert(element.timeStamp); 
+                    });
+            $("#restResoonse").html("</span>");
 
             //saveContent(data);
         }
