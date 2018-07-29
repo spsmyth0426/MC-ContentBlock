@@ -205,12 +205,12 @@ $( "#league" ).focusout(function() {
             $("#restResoonse").text(JSON.stringify(data, null, 2));
             console.log(data);
             
-            $("#restResoonse").html("<span>");
+            $("#sampleContent").html("<span>");
                     $.each(data, function(index, element) {
-                        $("#restResoonse").html("<p>"+element+"</p>");
+                        $("#sampleContent").html("<p>"+element+"</p>");
                         //alert(element.timeStamp); 
                     });
-            $("#restResoonse").html("</span>");
+            $("#sampleContent").html("</span>");
 
             //saveContent(data);
         }
