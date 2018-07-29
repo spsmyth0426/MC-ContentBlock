@@ -174,22 +174,22 @@ $( "#league, #player" ).focusout(function() {
         //var keyVal = {};
         //keyVal["name1"] = $( "#name1" ).val();
         //saveData("name1", $( "#name1" ).val());
+        
         var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nba/2018-playoff/player_gamelogs.json?team=det";
 
         console.log($("#sports").serialize());
 
         $.ajax({
-            type: "GET",
+            type: "POST",
             headers: {
                 'Authorization': 'Basic YzI3OTE0NDEtYzdjZS00OTJlLWI1YjQtZDQ3Y2U4OmtmNDV3eEI2'
             },
             url: wsUrl,
             contentType: "text/json",
             dataType: "json",
-            //data: $("#sports").serialize()
-        })
-        .done(function( msg ) {
-            alert( "Data Saved: " + msg );
+            data: $("#sports").serialize(),
+            success: processSuccess,
+            error: processError
         });
 
         function processSuccess(data, status, req) {
