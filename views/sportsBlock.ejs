@@ -175,7 +175,7 @@ $( "#league, #team" ).focusout(function() {
         //keyVal["name1"] = $( "#name1" ).val();
         //saveData("name1", $( "#name1" ).val());
         
-        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val()+"/2018-playoff/player_gamelogs.json?team="+$('#team').val()+"&limit=200";
+        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val()+"/2018-playoff/player_gamelogs.json?team="+$('#team').val()+"&limit=20";
 
         console.log($("#sports").serialize());
 
