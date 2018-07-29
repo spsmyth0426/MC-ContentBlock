@@ -35,7 +35,7 @@
 <div id="step1" class="step">
         <div class="slds-form slds-form_compound">
             <div class="slds-form-element">
-                <label class="slds-form-element__label" for="league">Select Label</label>
+                <label class="slds-form-element__label" for="league">Leauge</label>
                 <div class="slds-form-element__control">
                   <div class="slds-select_container">
                     <select class="slds-select" id="league">
@@ -47,14 +47,14 @@
                 </div>
               </div>
               <div class="slds-form-element">
-                <label class="slds-form-element__label" for="player">Select Label</label>
+                <label class="slds-form-element__label" for="team">Team</label>
                 <div class="slds-form-element__control">
                   <div class="slds-select_container">
-                    <select class="slds-select" id="player">
+                    <select class="slds-select" id="team">
                       <option value="">Please select</option>
-                      <option value="Player A">Player A</option>
-                      <option value="Player B">Player B</option>
-                      <option value="Player C">Player C</option>
+                      <option value="bos">Boston Celtics</option>
+                      <option value="tor">Toronto Raptors</option>
+                      <option value="hou">Houston Rockets</option>
                     </select>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ $( "#league, #player" ).focusout(function() {
         //keyVal["name1"] = $( "#name1" ).val();
         //saveData("name1", $( "#name1" ).val());
         
-        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val()+"/2018-playoff/player_gamelogs.json?team=bos";
+        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val()+"/2018-playoff/player_gamelogs.json?team="+$('#team').val();
 
         console.log($("#sports").serialize());
 
