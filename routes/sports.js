@@ -29,6 +29,31 @@ exports.sportsEndPoint = function(req, res){
 function pullSports(league, season, route, format, params){
     var options = {
         //url: 'https://api.mysportsfeeds.com/v1.2/pull/'+league+'/'+season+'/'+route+'.'+format,
+        url: 'https://worldcup.sfg.io/teams/results',
+        method: 'GET',
+        json: true
+    }
+    console.log(options);
+
+    request(options, function (error, response, body) {
+        console.log(response.statusCode);
+        if (!error && response.statusCode == 200) {
+            // Print out the response body
+            console.log('Post to DE successful');
+            console.log('Response: '+JSON.stringify(response, null, 2));
+            console.log('Body: '+JSON.stringify(body, null, 2));
+            response.send(200, 'Execute');
+        }else{
+            console.log('Post to DE: error');
+            console.log(body);
+            //response.render(500, 'Error');
+        }
+    })
+    //return res.send(200, 'Execute');
+}
+/*function pullSports(league, season, route, format, params){
+    var options = {
+        //url: 'https://api.mysportsfeeds.com/v1.2/pull/'+league+'/'+season+'/'+route+'.'+format,
         url: 'https://api.mysportsfeeds.com/v1.2/pull/nba/2018-playoff/player_gamelogs.json?team=det',
         method: 'GET',
         headers: {
@@ -53,4 +78,4 @@ function pullSports(league, season, route, format, params){
         }
     })
     //return res.send(200, 'Execute');
-}
+}*/

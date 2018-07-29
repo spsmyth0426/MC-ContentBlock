@@ -164,10 +164,22 @@ $( "#league" ).focusout(function() {
         //keyVal["name1"] = $( "#name1" ).val();
         //saveData("name1", $( "#name1" ).val());
         
-        var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val();
+        //var wsUrl = "https://api.mysportsfeeds.com/v1.2/pull/"+$('#league').val();
+        var wsUrl = "https://worldcup.sfg.io/teams/results";
 
         console.log($("#sports").serialize());
 
+        $.ajax({
+            type: "GET",
+            url: wsUrl,
+            contentType: "text/json",
+            dataType: "json",
+            //data: $("#sports").serialize(),
+            success: processSuccess,
+            error: processError
+        });
+
+        /*
         $.ajax({
             type: "GET",
             headers: {
@@ -180,6 +192,7 @@ $( "#league" ).focusout(function() {
             success: processSuccess,
             error: processError
         });
+        */
 
         function processSuccess(data, status, req) {
             //if (status == "success")
