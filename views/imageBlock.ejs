@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Content Builder - Image Load</title>
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script data-main="js/main.js" src="js/main.js"></script>
+    <script data-main="js/blocksdk.js" src="js/blocksdk.js"></script>
+    <script type="text/javascript">
+        
+        var sdk = new SDK();          
+       
+    </script>
+
+    <!--Styles-->
+    <style type="text/css">
+        body {
+            padding: 20px;
+            margin: 0;
+        }
+        .step {
+            display: none;
+        }
+        #step1 {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<form id="sports">    
+<div id="step1" class="step">
+        <div class="slds-form slds-form_compound">
+                <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="league">Choose</label>
+                        <div class="slds-form-element__control">
+                          <div class="slds-select_container">
+                            <select class="slds-select" id="image">
+                              <option value="">Please select</option>
+                              <option value="/public/images/image1.png">Image 1</option>
+                              <option value="/public/images/image2.png">Image 2</option>
+                              <option value="/public/images/image3.png">Image 3</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+            <br>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Image that will display.</label>
+                    <span id="showImage"></span>
+                    </br>
+                </div>
+            <br>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Response:</label>
+                    <p id="currentResoonse"></p>
+                    </br>
+                </div>  
+        </div>
+</div>
+</form>
+<script type="text/javascript">
+
+sdk.getData(function (data) {
+    var numberOfEdits = data.numberOfEdits || 0;
+    console.log(JSON.stringify(numberOfEdits, null, 2));
+
+    if(numberOfEdits == 0){
+        sdk.setData({
+            numberOfEdits: numberOfEdits + 1,
+            dataArray: {"image": "0"}
+        });
+    }else{
+        console.log('DataArray exists, populate fields.');
+    }
+    console.log(JSON.stringify(data.dataArray, null, 2));
+});
+
+
+function saveContent(imgUrl) {
+
+    sdk.getData(function (data) {
+        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
+
+        console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
+
+        function updateObject(keyVal, valVal){
+            var numberOfEdits = data.numberOfEdits || 0;
+            if(!data.dataArray){
+                //var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": valVal,"value1": "","name2": "", "value2": ""}}
+                console.log("Causing trouble!");
+            }else{
+                data.dataArray.image = imgUrl;
+                console.log("Adding new values: "+JSON.stringify(data, null, 2));
+            }
+
+            sdk.setData({
+                numberOfEdits: numberOfEdits + 1,
+                dataArray: data.dataArray
+            });
+            console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
+        }
+        updateObject(imgUrl);
+        //console.log("New Pair: "+keyVal+" - "+valVal);
+        //console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
+
+        
+        console.log("After saveText setData: "+JSON.stringify(data.dataArray, null, 2));
+
+        $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
+    });
+
+    sdk.getContent(function (content) {
+        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
+
+        console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
+        //console.log("Inside SaveContent - response data: "+JSON.stringify(data, null, 2));
+
+        content += imgUrl;
+        sdk.setContent(content, function (setContent) {
+            // block content is now its original content + '.'
+            console.log("setContent: "+JSON.stringify(setContent, null, 2));
+        });
+        
+    });
+
+}
+
+$('#image').change(function(){
+    $('#showImage').html('<img src="$(this).val();" style="width:100%;"/>');
+    saveContent('<img src="$(this).val();" style="width:100%;"/>');
+});
+
+</script>
+</body>
+</html>

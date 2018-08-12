@@ -44,6 +44,11 @@ app.get('/sportsBlock', function(request, response, next) {
   });
 });
 
+app.get('/imageBlock', function(request, response, next) {
+  response.render('imageBlock.ejs', {
+  });
+});
+
 app.post('/save', routes.save );
 
 app.post('/sportsEndPoint', sports.sportsEndPoint );
