@@ -74,6 +74,8 @@ sdk.getData(function (data) {
             dataArray: {"image": "0"}
         });
     }else{
+        $('#showImage').html('<img src="'+data+'" style="width:150px;"/>');
+        $("#image").val(image);
         console.log('DataArray exists, populate fields.');
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
@@ -119,7 +121,7 @@ function saveContent(imgUrl) {
         console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
         //console.log("Inside SaveContent - response data: "+JSON.stringify(data, null, 2));
 
-        content += imgUrl;
+        content == imgUrl;
         sdk.setContent(content, function (setContent) {
             // block content is now its original content + '.'
             console.log("setContent: "+JSON.stringify(setContent, null, 2));
