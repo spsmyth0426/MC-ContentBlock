@@ -75,7 +75,7 @@ sdk.getData(function (data) {
         });
     }else{
         $('#showImage').html('<img src="'+data.dataArray.image+'" style="width:150px;display:block;margin: 0 auto;"/>');
-        $("#image").val(JSON.stringify(data.dataArray.image, null, 2));
+        $("#image").val(data.dataArray.image);
         console.log('DataArray exists, populate fields.'+JSON.stringify(data, null, 2));
         console.log('Image-----'+JSON.stringify(data.dataArray.image, null, 2));
     }
