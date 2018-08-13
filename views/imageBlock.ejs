@@ -130,6 +130,7 @@ function saveContent(imgUrl) {
 }
 
 $('#image').change(function(){
+    console.log($(this).val());
     $('#showImage').html('<img src="$(this).val();" style="width:100%;"/>');
     saveContent('<img src="$(this).val();" style="width:100%;"/>');
 });
