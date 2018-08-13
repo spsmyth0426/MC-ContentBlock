@@ -121,7 +121,7 @@ function saveContent(imgUrl) {
         console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
         //console.log("Inside SaveContent - response data: "+JSON.stringify(data, null, 2));
 
-        content == imgUrl;
+        content = imgUrl;
         sdk.setContent(content, function (setContent) {
             // block content is now its original content + '.'
             console.log("setContent: "+JSON.stringify(setContent, null, 2));
