@@ -131,7 +131,7 @@ function saveContent(imgUrl) {
 
 $('#image').change(function(){
     $('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
-    saveContent('<img src="$(this).val();" style="width:100%;"/>');
+    saveContent('<img src="'+$(this).val()+'" style="width:100%;"/>');
 });
 
 </script>
