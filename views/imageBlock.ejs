@@ -76,7 +76,7 @@ sdk.getData(function (data) {
     }else{
         $('#showImage').html('<img src="'+JSON.stringify(data.dataArray.image, null, 2)+'" style="width:150px;"/>');
         $("#image").val(JSON.stringify(data.dataArray.image, null, 2));
-        console.log('DataArray exists, populate fields.');
+        console.log('DataArray exists, populate fields.'+JSON.stringify(data, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
