@@ -75,14 +75,14 @@ sdk.getData(function (data) {
         });
     }else{
         $('#showImage').html('<img src="'+JSON.stringify(data.dataArray.image, null, 2)+'" style="width:150px;display:block;margin: 0 auto;"/>');
-        $("#image").val(JSON.stringify(data.dataArray.image, null, 2));
+        $("#image").val(JSON.stringify(data.dataArray.text, null, 2));
         console.log('DataArray exists, populate fields.'+JSON.stringify(data, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
 
 
-function saveContent(imgUrl) {
+function saveContent(imgUrl, imgText) {
 
     sdk.getData(function (data) {
         //$( "#currentData" ).html(JSON.stringify(data, null, 2));
@@ -96,6 +96,7 @@ function saveContent(imgUrl) {
                 console.log("Causing trouble!");
             }else{
                 data.dataArray.image = imgUrl;
+                data.dataArray.text = imgText;
                 console.log("Adding new values: "+JSON.stringify(data, null, 2));
             }
 
@@ -105,7 +106,7 @@ function saveContent(imgUrl) {
             });
             console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
         }
-        updateObject(imgUrl);
+        updateObject(imgUrl, imgText);
         //console.log("New Pair: "+keyVal+" - "+valVal);
         //console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
 
@@ -135,7 +136,7 @@ function saveContent(imgUrl) {
 
 $('#image').change(function(){
     $('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
-    saveContent($(this).val());
+    saveContent($(this).val(), $(this).text());
 });
 
 </script>
