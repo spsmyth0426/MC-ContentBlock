@@ -131,8 +131,10 @@ function saveContent(imgUrl) {
 }
 
 $('#image').change(function(){
-    console.log($(this).val());
-    $('#showImage').html('<img src="'$(this).val();'" style="width:100%;"/>');
+    var $option = $(this).find('option:selected');
+    //Added with the EDIT
+    var value = $option.val();//to get content of "value" attrib
+    $('#showImage').html('<img src="'value'" style="width:100%;"/>');
     saveContent('<img src="$(this).val();" style="width:100%;"/>');
 });
 
