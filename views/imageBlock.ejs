@@ -76,8 +76,7 @@ sdk.getData(function (data) {
     }else{
         $('#showImage').html('<img src="'+data.dataArray.image+'" style="width:150px;display:block;margin: 0 auto;"/>');
         $("#image").val(data.dataArray.image);
-        console.log('DataArray exists, populate fields.'+JSON.stringify(data, null, 2));
-        console.log('Image-----'+JSON.stringify(data.dataArray.image, null, 2));
+        $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
@@ -86,14 +85,12 @@ sdk.getData(function (data) {
 function saveContent(imgUrl) {
 
     sdk.getData(function (data) {
-        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
-
+        
         console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
 
         function updateObject(keyVal, valVal){
             var numberOfEdits = data.numberOfEdits || 0;
             if(!data.dataArray){
-                //var dataArray = {"deExternalKey": "Function","keys": {"Id": "1"},"values": {"name1": valVal,"value1": "","name2": "", "value2": ""}}
                 console.log("Causing trouble!");
             }else{
                 data.dataArray.image = imgUrl;
@@ -107,8 +104,6 @@ function saveContent(imgUrl) {
             console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
         }
         updateObject(imgUrl);
-        //console.log("New Pair: "+keyVal+" - "+valVal);
-        //console.log("DataArray: "+JSON.stringify(dataArray, null, 2));
 
         
         console.log("After saveText setData: "+JSON.stringify(data.dataArray, null, 2));
@@ -117,16 +112,12 @@ function saveContent(imgUrl) {
     });
 
     sdk.getContent(function (content) {
-        //$( "#currentData" ).html(JSON.stringify(data, null, 2));
-
         console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
-        //console.log("Inside SaveContent - response data: "+JSON.stringify(data, null, 2));
         
         var imageHTML = '<img src="'+imgUrl+'" style="width:150px;display:block;margin: 0 auto;"/>';
 
         content = imageHTML;
         sdk.setContent(content, function (setContent) {
-            // block content is now its original content + '.'
             console.log("setContent: "+JSON.stringify(setContent, null, 2));
         });
         
