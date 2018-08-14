@@ -16,10 +16,6 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-//app.use(bodyParser.urlencoded({ extended: true }));
-
-//app.use(express.methodOverride());
-//app.use(express.favicon());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,11 +24,8 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
-// HubExchange Routes
-//app.get('/', routes.index );
 app.get('/', function(request, response, next) {
 });
-
 
 app.get('/load', function(request, response, next) {
   response.render('load.ejs', {
