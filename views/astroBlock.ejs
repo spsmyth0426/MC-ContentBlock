@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Content Builder - Astro Block</title>
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script data-main="js/main.js" src="js/main.js"></script>
+    <script data-main="js/blocksdk.js" src="js/blocksdk.js"></script>
+    <script type="text/javascript">
+        
+        var sdk = new SDK();          
+       
+    </script>
+
+</head>
+<body>
+<form id="sports">    
+<div id="step1" class="step">
+        <div class="slds-form slds-form_compound">
+                <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="league">Choose</label>
+                        <div class="slds-form-element__control">
+                          <div class="slds-select_container">
+                            <select class="slds-select" id="image">
+                              <option value="">Please select</option>
+                              <option value="https://cdn-images-1.medium.com/max/1600/1*A1Tqb0EcWFR8no72ffuAjw.png">Astro the Fan</option>
+                              <option value="https://appstickers-cdn.appadvice.com/1153260108/823446843/59d55d99bd98003b6cd092d00ca740e3-1.png">Astro the Director</option>
+                              <option value="https://appstickers-cdn.appadvice.com/1153260108/823446843/61244adfa3b5a06e6978844117ce9911-0.png">Astro the Painter</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+            <br>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Image that will display.</label>
+                    <span id="showImage"></span>
+                    </br>
+                </div>
+            <br>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Response:</label>
+                    <p id="currentResoonse"></p>
+                    </br>
+                </div>  
+        </div>
+</div>
+</form>
+<script type="text/javascript"> 
+
+sdk.getData(function (data) {
+    var numberOfEdits = data.numberOfEdits || 0;
+    console.log(JSON.stringify(numberOfEdits, null, 2));
+
+    if(numberOfEdits == 0){
+        sdk.setData({
+            numberOfEdits: numberOfEdits + 1,
+            dataArray: {"image": "0"}
+        });
+    }else{
+        // ensure panel is opened with the current value in the email
+        $('#showImage').html('<img src="'+data.dataArray.image+'" style="width:150px;display:block;margin: 0 auto;"/>');
+        $("#image").val(data.dataArray.image);
+        $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
+    }
+    console.log(JSON.stringify(data.dataArray, null, 2));
+});
+
+
+function saveContent(imgUrl) {
+
+    sdk.getData(function (data) {
+        
+        console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
+
+        function updateObject(keyVal, valVal){
+            var numberOfEdits = data.numberOfEdits || 0;
+            if(!data.dataArray){
+                console.log("Causing trouble!");
+            }else{
+                data.dataArray.image = imgUrl;
+                console.log("Adding new values: "+JSON.stringify(data, null, 2));
+            }
+
+            sdk.setData({
+                numberOfEdits: numberOfEdits + 1,
+                dataArray: data.dataArray
+            });
+            console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
+        }
+        updateObject(imgUrl);
+
+        
+        console.log("After saveText setData: "+JSON.stringify(data.dataArray, null, 2));
+
+        $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
+    });
+
+    sdk.getContent(function (content) {
+        console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
+        
+        var imageHTML = '<img src="'+imgUrl+'" style="width:150px;display:block;margin: 0 auto;"/>';
+
+        content = imageHTML;
+        sdk.setContent(content, function (setContent) {
+            console.log("setContent: "+JSON.stringify(setContent, null, 2));
+        });
+        
+    });
+
+}
+
+// On picklist change, save new content
+$('#image').change(function(){
+    $('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
+    saveContent($(this).val());
+});
+
+</script>
+</body>
+</html>
