@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Content Builder - Dynamic</title>
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/salesforce-lightning-design-system.css" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script data-main="js/main.js" src="js/main.js"></script>
+    <script data-main="js/blocksdk.js" src="js/blocksdk.js"></script>
+    <script type="text/javascript">
+        
+        var sdk = new SDK();          
+       
+    </script>
+
+    <!--Styles-->
+    <style type="text/css">
+        body {
+            padding: 20px;
+            margin: 0;
+        }
+        .step {
+            display: none;
+        }
+        #step1 {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<form id="sports">    
+<div id="step1" class="step">
+        <p>Select the type of dynamic content.</p>
+        <div class="slds-form slds-form_compound">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="league">Choose</label>
+                <div class="slds-form-element__control"> 
+                    <div class="slds-select_container">
+                    <select class="slds-select" id="image">
+                        <option value="">Please select</option>
+                        <option value="Summary">Summary</option>
+                        <option value="Interest">Interest</option>
+                        <option value="Question">Question</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+
+            <p>Select the Summary / Question / Interest Id</p>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="league">Relevant Id</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="relevantId" name="questionId" class="slds-input" placeholder="Relevant Id" />  
+                </div>
+            </div>
+
+            <p>Select the content to show.</p>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="league">Condition 1 Logic</label>
+                <div class="slds-form-element__control"> 
+                    <div class="slds-select_container">
+                        <p>IF Answer Value ==</p>    
+                        <div class="slds-form-element__control">
+                            <input type="text" id="condition1" name="condition1" class="slds-input" placeholder="Answer Value" />  
+                        </div>
+                        <p>SHOW</p>    
+                        <div class="slds-form-element__control">
+                            <input type="text" id="content1" name="content1" class="slds-input" placeholder="Content Block Id" />  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</form>
+<script type="text/javascript"> 
+
+sdk.getData(function (data) {
+    var numberOfEdits = data.numberOfEdits || 0;
+    console.log(JSON.stringify(numberOfEdits, null, 2));
+
+    if(numberOfEdits == 0){
+        sdk.setData({
+            numberOfEdits: numberOfEdits + 1,
+            dataArray: {"selected": "0", "relevantId": "", "ampSnippet": ""},
+            content: {"condition1": "", "content1": "", "condition2": "", "content2": "", "condition3": "", "content3": "",}
+        });
+    }else{
+        $('#showImage').html('<img src="'+data.dataArray.image+'" style="width:150px;display:block;margin: 0 auto;"/>');
+        $("#image").val(data.dataArray.image);
+        $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
+    }
+    console.log(JSON.stringify(data.dataArray, null, 2));
+});
+
+
+function saveContent(imgUrl) {
+
+    sdk.getData(function (data) {
+        
+        console.log("Inside SaveText - Data: "+JSON.stringify(data, null, 2));
+
+        function updateObject(keyVal, valVal){
+            var numberOfEdits = data.numberOfEdits || 0;
+            if(!data.dataArray){
+                console.log("Causing trouble!");
+            }else{
+                data.dataArray.image = imgUrl;
+                console.log("Adding new values: "+JSON.stringify(data, null, 2));
+            }
+
+            sdk.setData({
+                numberOfEdits: numberOfEdits + 1,
+                dataArray: data.dataArray
+            });
+            console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
+        }
+        updateObject(imgUrl);
+
+        
+        console.log("After saveText setData: "+JSON.stringify(data.dataArray, null, 2));
+
+        $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
+    });
+
+    sdk.getContent(function (content) {
+        console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
+        
+        var imageHTML = '<img src="'+imgUrl+'" style="width:150px;display:block;margin: 0 auto;"/>';
+
+        content = imageHTML;
+        sdk.setContent(content, function (setContent) {
+            console.log("setContent: "+JSON.stringify(setContent, null, 2));
+        });
+        
+    });
+
+}
+
+$('#image').change(function(){
+    $('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
+    saveContent($(this).val());
+});
+
+</script>
+</body>
+</html>
