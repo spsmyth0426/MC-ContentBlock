@@ -47,6 +47,11 @@ app.get('/astroBlock', function(request, response, next) {
   });
 });
 
+app.get('/dynamicBlock', function(request, response, next) {
+  response.render('dynamicBlock.ejs', {
+  });
+});
+
 app.post('/save', routes.save );
 
 app.post('/sportsEndPoint', sports.sportsEndPoint );
