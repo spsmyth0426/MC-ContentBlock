@@ -39,7 +39,7 @@
                 <label class="slds-form-element__label" for="league">Choose</label>
                 <div class="slds-form-element__control"> 
                     <div class="slds-select_container">
-                    <select class="slds-select" id="image">
+                    <select class="slds-select" id="type">
                         <option value="">Please select</option>
                         <option value="Summary">Summary</option>
                         <option value="Interest">Interest</option>
@@ -51,9 +51,9 @@
 
             <br><p>Select the Summary / Question / Interest Id</p>
             <div class="slds-form-element">
-                <label class="slds-form-element__label" for="league">Relevant Id</label>
+                <label class="slds-form-element__label" for="relevantId">Relevant Id</label>
                 <div class="slds-form-element__control">
-                    <input type="text" id="relevantId" name="questionId" class="slds-input" placeholder="Relevant Id" />  
+                    <input type="text" id="relevantId" name="relevantId" class="slds-input" placeholder="Relevant Id" />  
                 </div>
             </div>
 
@@ -79,6 +79,21 @@
                     </div>
                 </div>
             </div>
+
+            <br>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01">Data Object:</label>
+                <p id="dataObject"></p>
+                </br>
+            </div>  
+            
+            <br>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01">Ampscript Generated:</label>
+                <p id="ampSnippet"></p>
+                </br>
+            </div>  
+
         </div>
 </div>
 </form>
@@ -91,13 +106,16 @@ sdk.getData(function (data) {
     if(numberOfEdits == 0){
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
-            dataArray: {"selected": "0", "relevantId": "", "ampSnippet": ""},
-            content: {"condition1": "", "content1": "", "condition2": "", "content2": "", "condition3": "", "content3": "",}
+            dataArray: {"selected": "", "relevantId": "", "ampSnippet": ""},
+            content: {"condition1": "", "content1": "", "condition2": "", "content2": "", "condition3": "", "content3": ""}
         });
     }else{
-        $('#showImage').html('<img src="'+data.dataArray.image+'" style="width:150px;display:block;margin: 0 auto;"/>');
-        $("#image").val(data.dataArray.image);
-        $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
+        $('#dataObject').html(JSON.stringify(data, null, 2));
+        $("#type").val(data.dataArray.selected);
+        $("#relevantId").val(data.dataArray.relevantId);
+        $("#condition1").val(data.content.condition1);
+        $("#content1").val(data.content.condition1);
+        $( "#ampSnippet" ).html(JSON.stringify(data.dataArray.ampSnippet, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
