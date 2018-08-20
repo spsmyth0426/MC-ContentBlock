@@ -106,7 +106,8 @@ sdk.getData(function (data) {
     if(numberOfEdits == 0){
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
-            dataArray: {"selected": "", "relevantId": "", "ampSnippet": "", "condition1": "", "content1": "", "defaultContent1": "", "condition2": "", "content2": "", "condition3": "", "content3": ""}
+            dataArray: {"selected": "", "relevantId": "", "ampSnippet": "", "condition1": "", "content1": "", "defaultContent1": "", "condition2": "", "content2": "", "condition3": "", "content3": ""},
+            ampSnippet: ""
         });
     }else{
         $('#dataObject').html(JSON.stringify(data, null, 2));
@@ -135,13 +136,15 @@ function saveContent(name, value) {
                 console.log("Adding new values: "+JSON.stringify(data, null, 2));
             }
 
+            var ampSnippet = '%%[Set @PreferenceQuestionId = "'+data.dataArray.relevantId+'" Set @InterestId = "" Set @Id = AttributeValue("Id") Set @summary_rows = LookupOrderedRows("Survey_Results_Summary__c_Salesforce", 1, "Id Desc", "WhoId__c", @Id, "Preference_Question__c", @PreferenceQuestionId) IF RowCount(@summary_rows) == 0 THEN Set @summary_message = "There is no matching record." ELSE IF RowCount(@summary_rows) > 0 THEN Set @summary_message = "Record was found" Set @summary_row = row(@summary_rows,1) Set @QuestionId = FIELD(@summary_row,"Preference_Question__c") Set @AnswerValue = FIELD(@summary_row,"Answer__c") ELSE Set @summary_message = "There is no matching record." ENDIF ENDIF]%% <p>Id: %%=v(@Id)=%%</p><p>Question: %%=v(@PreferenceQuestionId)=%%</p><p>Message: %%=v(@summary_message)=%%</p><p>AnswerValue: %%=v(@AnswerValue)=%%</p> %%[IF @AnswerValue == "'+data.dataArray.condition1+'" THEN Outputline(ContentBlockbyId("'+data.dataArray.content1+'")) ELSE Outputline(ContentBlockbyId("'+data.dataArray.defaultContent1+'")) ENDIF]%%';
+
             sdk.setData({
                 numberOfEdits: numberOfEdits + 1,
-                dataArray: data.dataArray
+                dataArray: data.dataArray,
+                ampSnippet: ampSnippet
             });
 
-            var ampSnippet = '%%[Set @PreferenceQuestionId = "'+data.dataArray.relevantId+'" Set @InterestId = "" Set @Id = AttributeValue("Id") Set @summary_rows = LookupOrderedRows("Survey_Results_Summary__c_Salesforce", 1, "Id Desc", "WhoId__c", @Id, "Preference_Question__c", @PreferenceQuestionId) IF RowCount(@summary_rows) == 0 THEN Set @summary_message = "There is no matching record." ELSE IF RowCount(@summary_rows) > 0 THEN Set @summary_message = "Record was found" Set @summary_row = row(@summary_rows,1) Set @QuestionId = FIELD(@summary_row,"Preference_Question__c") Set @AnswerValue = FIELD(@summary_row,"Answer__c") ELSE Set @summary_message = "There is no matching record." ENDIF ENDIF]%% <p>Id: %%=v(@Id)=%%</p><p>Question: %%=v(@PreferenceQuestionId)=%%</p><p>Message: %%=v(@summary_message)=%%</p><p>AnswerValue: %%=v(@AnswerValue)=%%</p> %%[IF @AnswerValue == "'+data.dataArray.condition1+'" THEN Outputline(ContentBlockbyId("'+data.dataArray.content1+'")) ELSE Outputline(ContentBlockbyId("'+data.dataArray.defaultContent1+'")) ENDIF]%%'
-
+            console.log("Ampscript: "+JSON.stringify(data.ampscript, null, 2));
             console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
         }
         updateObject(name, value);
@@ -156,6 +159,7 @@ function saveContent(name, value) {
         console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
         
         //var imageHTML = '<img src="'+imgUrl+'" style="width:150px;display:block;margin: 0 auto;"/>';
+        console.log("Ampscript: "+ampscript);
 
         content = ampSnippet;
         sdk.setContent(content, function (setContent) {
