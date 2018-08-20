@@ -110,12 +110,12 @@ sdk.getData(function (data) {
             ampSnippet: ""
         });
     }else{
-        $('#dataObject').html(JSON.stringify(data, null, 2));
+        $('#dataObject').html(JSON.stringify(data.dataArray, null, 2));
         $("#type").val(data.dataArray.selected);
         $("#relevantId").val(data.dataArray.relevantId);
         $("#condition1").val(data.dataArray.condition1);
         $("#content1").val(data.dataArray.condition1);
-        $( "#ampSnippet" ).html(JSON.stringify(data.dataArray.ampSnippet, null, 2));
+        $("#ampSnippet").html(JSON.stringify(data.dataArray.ampSnippet, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
 });
