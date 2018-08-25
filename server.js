@@ -79,6 +79,7 @@ app.get('/getAsset', function(req, res, next) {
             getAsset(accessToken, assetId);
         }else{
             console.log('Bearer: Error');
+            res.json({ message: 'Error Auth' });
         }
     })
   }
@@ -105,14 +106,16 @@ app.get('/getAsset', function(req, res, next) {
             console.log(jsonAsset);
             var content = jsonAsset.content;
             console.log(content);
+            res.json({ message: content });
         }else{
             console.log('Post to DE: error');
             console.log(body);
+            res.json({ message: 'Error' });
         }
     })
   }
   var auth = authToken(process.env.clientId, process.env.clientSecret, assetId);
-  res.json({ message: content });
+  
 });
 
 app.post('/save', routes.save );
