@@ -109,10 +109,10 @@ function getAsset(assetId){
         type: "GET",
         url: "https://shane-cb.herokuapp.com/getAsset?id="+assetId,
         success: function(data){        
-            alert(data);
+            alert(JSON.stringify(data, null, 2));
+            return data;
         }
     });
-    return data;
 }
 
 sdk.getData(function (data) {

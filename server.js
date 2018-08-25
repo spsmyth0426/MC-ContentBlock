@@ -101,9 +101,7 @@ app.get('/getAsset', function(req, res, next) {
     request(optionsAsset, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             // Print out the response body
-            console.log('Post to DE successful');
             let jsonAsset = JSON.parse(body);
-            console.log(jsonAsset);
             var content = jsonAsset.content;
             console.log(content);
             res.json({ message: content });
