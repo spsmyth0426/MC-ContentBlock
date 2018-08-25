@@ -53,11 +53,11 @@ app.get('/dynamicBlock', function(request, response, next) {
   });
 });
 
-app.get('/getAsset', function(request, response, next) {
+app.get('/getAsset', function(req, response, next) {
   /**********************/
   // CALL FOR AUTHORIZATION
   /**********************/
-  var assetId = request.query.id;
+  var assetId = req.query.id;
   console.log(assetId);
   function authToken(clientId, clientSecret, assetId){
     var options = {
