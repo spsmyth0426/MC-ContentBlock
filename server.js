@@ -112,7 +112,7 @@ app.get('/getAsset', function(request, response, next) {
         }
     })
   }
-  authToken(process.env.clientId, process.env.clientSecret, req.body.assetId);
+  authToken(process.env.clientId, process.env.clientSecret, assetId);
   res.json({ message: 'hooray! welcome to our api!' });
 });
 
