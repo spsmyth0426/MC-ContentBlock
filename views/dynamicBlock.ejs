@@ -120,6 +120,7 @@ sdk.getData(function (data) {
         $("#relevantId").val(data.dataArray.relevantId);
         $("#condition1").val(data.dataArray.condition1);
         $("#content1").val(data.dataArray.condition1);
+        $("#defaultcontent1").val(data.dataArray.condition1);
         $("#ampSnippet").html(JSON.stringify(data.dataArray.ampSnippet, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
