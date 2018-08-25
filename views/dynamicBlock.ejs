@@ -183,7 +183,7 @@ function saveContent(name, value) {
             });
             
         });
-        var superContent = "This is super content!";
+        var superContent = "<p>Dynamic Content Type: Summary</p><p>Preview dynamic content by clicking next.</p>";
         sdk.setSuperContent(superContent, function (setSuperContent){
             console.log("SuperContent: "+JSON.stringify(setSuperContent, null, 2));
         });
