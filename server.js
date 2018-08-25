@@ -53,7 +53,7 @@ app.get('/dynamicBlock', function(request, response, next) {
   });
 });
 
-app.get('/getAsset', function(req, response, next) {
+app.get('/getAsset', function(req, res, next) {
   /**********************/
   // CALL FOR AUTHORIZATION
   /**********************/
@@ -111,8 +111,8 @@ app.get('/getAsset', function(req, response, next) {
         }
     })
   }
-  authToken(process.env.clientId, process.env.clientSecret, assetId);
-  res.json({ message: 'hooray! welcome to our api!' });
+  var auth = authToken(process.env.clientId, process.env.clientSecret, assetId);
+  res.json({ message: content });
 });
 
 app.post('/save', routes.save );
