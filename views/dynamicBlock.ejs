@@ -166,7 +166,9 @@ function saveContent(name, value) {
         $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
     });
 
-    if(validateForm != false){
+    var validate = validateForm();
+    if(validate != false){
+        console.log('Validate: '+validate);
         sdk.getContent(function (content) {
             console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
             
@@ -180,8 +182,8 @@ function saveContent(name, value) {
             
         });
     }else{
-            console.log('Field Empty');
-        }
+        console.log('Validate: '+validate);
+    }
 }
 
 function validateForm() {
