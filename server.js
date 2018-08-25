@@ -62,14 +62,13 @@ app.get('/getAsset', function(request, response, next) {
   function authToken(clientId, clientSecret, assetId){
     var options = {
         url: 'http://auth.exacttargetapis.com/v1/requestToken',
-        method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
             },
         form: {'clientId': clientId, 'clientSecret': clientSecret}
     }
 
-    request(options, function (error, response, body) {
+    request.post(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             // Print out the response body
             console.log('Bearer: Sucess');
