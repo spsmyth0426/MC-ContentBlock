@@ -219,7 +219,7 @@ $('#type, #relevantId, #condition1, #content1, #defaultContent1').change(functio
 
 $('#defaultContent1').change(function(){
     var asset = getAsset($(this).val());
-    console.log(asset);
+    console.log(JSON.stringify(asset, null, 2));
     //saveContent('defaultContentHTML', asset);
 });
 
