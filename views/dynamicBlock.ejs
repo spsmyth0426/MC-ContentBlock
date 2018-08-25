@@ -104,6 +104,31 @@
 </form>
 <script type="text/javascript"> 
 
+function authorization(){
+    $.ajax({ 
+        type: "POST",
+        data: '{"clientId": "xc29s6f8f0zil8dy8s1be2bb","clientSecret": "I13izFgvSNg6xdb0mrOD7BBd"}',
+        url: "https://auth.exacttargetapis.com/v1/requestToken",
+        success: function(data){        
+            alert(data);
+        }
+    });
+}
+
+var auth = authorization();
+console.log(auth);
+
+function getAsset(){
+    $.ajax({ 
+        type: "GET",
+        dataType: "jsonp",
+        url: "https://www.exacttargetapis.com/asset/v1/content/assets/124828",
+        success: function(data){        
+            alert(data);
+        }
+    });
+}
+
 sdk.getData(function (data) {
     var numberOfEdits = data.numberOfEdits || 0;
     console.log(JSON.stringify(numberOfEdits, null, 2));
@@ -119,8 +144,8 @@ sdk.getData(function (data) {
         $("#type").val(data.dataArray.type);
         $("#relevantId").val(data.dataArray.relevantId);
         $("#condition1").val(data.dataArray.condition1);
-        $("#content1").val(data.dataArray.condition1);
-        $("#defaultcontent1").val(data.dataArray.condition1);
+        $("#content1").val(data.dataArray.content1);
+        $("#defaultcontent1").val(data.dataArray.defaultContent1);
         $("#ampSnippet").html(JSON.stringify(data.ampSnippet, null, 2));
     }
     console.log(JSON.stringify(data.dataArray, null, 2));
