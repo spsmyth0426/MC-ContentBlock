@@ -104,29 +104,15 @@
 </form>
 <script type="text/javascript"> 
 
-function authorization(){
-    $.ajax({ 
-        type: "POST",
-        data: '{"clientId": "xc29s6f8f0zil8dy8s1be2bb","clientSecret": "I13izFgvSNg6xdb0mrOD7BBd"}',
-        url: "https://auth.exacttargetapis.com/v1/requestToken",
-        success: function(data){        
-            alert(data);
-        }
-    });
-}
-
-var auth = authorization();
-console.log(auth);
-
-function getAsset(){
+function getAsset(assetId){
     $.ajax({ 
         type: "GET",
-        dataType: "jsonp",
-        url: "https://www.exacttargetapis.com/asset/v1/content/assets/124828",
+        url: "https://shane-cb.herokuapp.com/getAsset?id="+assetId,
         success: function(data){        
             alert(data);
         }
     });
+    return data;
 }
 
 sdk.getData(function (data) {
@@ -229,6 +215,12 @@ function validateForm() {
 $('#type, #relevantId, #condition1, #content1, #defaultContent1').change(function(){
     //$('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
     saveContent($(this).attr("name"), $(this).val());
+});
+
+$('#defaultContent1').change(function(){
+    var asset = getAsset($(this).val());
+    console.log(asset);
+    //saveContent('defaultContentHTML', asset);
 });
 
 </script>

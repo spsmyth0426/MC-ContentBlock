@@ -48,8 +48,72 @@ app.get('/astroBlock', function(request, response, next) {
 });
 
 app.get('/dynamicBlock', function(request, response, next) {
+  
   response.render('dynamicBlock.ejs', {
   });
+});
+
+app.get('/getAsset', function(request, response, next) {
+  /**********************/
+  // CALL FOR AUTHORIZATION
+  /**********************/
+  var assetId = request.query.id;
+  console.log(assetId);
+  function authToken(clientId, clientSecret, assetId){
+    var options = {
+        url: 'http://auth.exacttargetapis.com/v1/requestToken',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        form: {'clientId': clientId, 'clientSecret': clientSecret}
+    }
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            // Print out the response body
+            console.log('Bearer: Sucess');
+            let json = JSON.parse(body);
+            console.log(json);
+            var accessToken = json.accessToken;
+            console.log(accessToken);
+            getAsset(accessToken, assetId);
+        }else{
+            console.log('Bearer: Error');
+        }
+    })
+  }
+
+  /**********************/
+  // POST DATA
+  /**********************/
+  function getAsset(accessToken, assetId){
+    var optionsAsset = {
+        url: 'https://www.exacttargetapis.com/asset/v1/content/assets/'+assetId,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+accessToken
+        }
+    }
+    console.log(optionsAsset);
+
+    request(optionsAsset, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            // Print out the response body
+            console.log('Post to DE successful');
+            let jsonAsset = JSON.parse(body);
+            console.log(jsonAsset);
+            var content = jsonAsset.content;
+            console.log(content);
+        }else{
+            console.log('Post to DE: error');
+            console.log(body);
+        }
+    })
+  }
+  authToken(process.env.clientId, process.env.clientSecret, req.body.assetId);
+  res.json({ message: 'hooray! welcome to our api!' });
 });
 
 app.post('/save', routes.save );
