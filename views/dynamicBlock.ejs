@@ -27,10 +27,24 @@
         #step1 {
             display: block;
         }
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 
 </head>
 <body>
+<div class="loader"></div>    
 <form id="dynamicForm">    
 <div id="step1" class="step">
         <p>Description: This block is used to build dynamic content to related data extensions that the normal dynamic content block does not allow.</p>
@@ -63,16 +77,10 @@
                 <label class="slds-form-element__label" for="condition1">Condition 1 Logic</label>
                 <div class="slds-form-element__control"> 
                     <div class="slds-select_container">
-                            <div class="slds-grid slds-gutters">
-                                <div class="slds-col slds-size_1-of-4">
-                                    <p style="padding-top:10px;">IF Answer Value ==</p>
-                                </div>
-                                <div class="slds-col slds-size_3-of-4" style="padding-top:10px">
-                                    <div class="slds-form-element__control">
-                                        <input type="text" id="condition1" name="condition1" class="slds-input" placeholder="Answer Value" required/>  
-                                    </div>
-                                </div>
-                            </div>
+                        <p style="padding-top:10px;">IF Answer Value ==</p>    
+                        <div class="slds-form-element__control">
+                            <input type="text" id="condition1" name="condition1" class="slds-input" placeholder="Answer Value" required/>  
+                        </div>
                         <p style="padding-top:10px;">SHOW</p>    
                         <div class="slds-form-element__control">
                             <input type="text" id="content1" name="content1" class="slds-input" placeholder="Content Block Id" required/>  
