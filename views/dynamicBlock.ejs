@@ -109,8 +109,9 @@ function getAsset(assetId){
         type: "GET",
         url: "https://shane-cb.herokuapp.com/getAsset?id="+assetId,
         success: function(data){        
-            alert(JSON.stringify(data, null, 2));
-            return data;
+            //alert(JSON.stringify(data, null, 2));
+            //return data;
+            console.log(data.message);
             saveContent('defaultContentHTML', data.message);
         }
     });
@@ -123,7 +124,7 @@ sdk.getData(function (data) {
     if(numberOfEdits == 0){
         sdk.setData({
             numberOfEdits: numberOfEdits + 1,
-            dataArray: {"type": "", "relevantId": "", "ampSnippet": "", "condition1": "", "content1": "", "defaultContent1": "", "condition2": "", "content2": "", "condition3": "", "content3": ""},
+            dataArray: {"type": "", "relevantId": "", "ampSnippet": "", "condition1": "", "content1": "", "defaultContent1": "", "condition2": "", "content2": "", "condition3": "", "content3": "", "defaultContentHTML": ""},
             ampSnippet: ""
         });
     }else{
@@ -196,6 +197,7 @@ function saveContent(name, value) {
             
         });
         var superContent = "<p><b>Dynamic Content Type: Summary</b></p><p>Preview dynamic content by clicking next.</p>";
+        console.log("SuperContent HTML: "+JSON.stringify(data.defaultContentHTML, null, 2));
         sdk.setSuperContent(data.defaultContentHTML, function (setSuperContent){
             console.log("SuperContent: "+JSON.stringify(setSuperContent, null, 2));
         });
