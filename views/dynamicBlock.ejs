@@ -111,6 +111,7 @@ function getAsset(assetId){
         success: function(data){        
             alert(JSON.stringify(data, null, 2));
             return data;
+            saveContent('defaultContentHTML', data.message);
         }
     });
 }
@@ -195,7 +196,7 @@ function saveContent(name, value) {
             
         });
         var superContent = "<p><b>Dynamic Content Type: Summary</b></p><p>Preview dynamic content by clicking next.</p>";
-        sdk.setSuperContent(superContent, function (setSuperContent){
+        sdk.setSuperContent(data.defaultContentHTML, function (setSuperContent){
             console.log("SuperContent: "+JSON.stringify(setSuperContent, null, 2));
         });
     }else{
