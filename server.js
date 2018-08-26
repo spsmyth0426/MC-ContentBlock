@@ -78,8 +78,8 @@ app.get('/getAsset', function(req, res, next) {
             console.log(accessToken);
             getAsset(accessToken, assetId);
         }else{
-            console.log('Bearer: Error');
-            res.json({ message: 'Error Auth' });
+            console.log('Auth Error');
+            res.json({ message: '<p style="color:red;text-align:center;">Authentication errored, validate clientId & clientSecret are correct.</p>' });
         }
     })
   }
@@ -108,7 +108,7 @@ app.get('/getAsset', function(req, res, next) {
         }else{
             console.log('Post to DE: error');
             console.log(body);
-            res.json({ message: 'Error' });
+            res.json({ message: '<p style="color:red;text-align:center;">Content Block Retrieval Error, verify content block exists.</p>' });
         }
     })
   }
