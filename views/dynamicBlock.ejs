@@ -179,31 +179,32 @@ function saveContent(name, value) {
         console.log("After saveText setData: "+JSON.stringify(data.dataArray, null, 2));
 
         $( "#currentResoonse" ).html(JSON.stringify(data, null, 2));
+
+        var validate = validateForm();
+        if(validate != false){
+            console.log('Validate: '+validate);
+            sdk.getContent(function (content) {
+                console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
+                
+                //var imageHTML = '<img src="'+imgUrl+'" style="width:150px;display:block;margin: 0 auto;"/>';
+                console.log("Ampscript: "+ampSnippet);
+
+                content = ampSnippet;
+                sdk.setContent(content, function (setContent) {
+                    console.log("setContent: "+JSON.stringify(setContent, null, 2));
+                });
+                
+            });
+            var superContent = "<p><b>Dynamic Content Type: Summary</b></p><p>Preview dynamic content by clicking next.</p>";
+            console.log("SuperContent HTML: "+JSON.stringify(data.defaultContentHTML, null, 2));
+            sdk.setSuperContent(data.defaultContentHTML, function (setSuperContent){
+                console.log("SuperContent: "+JSON.stringify(setSuperContent, null, 2));
+            });
+        }else{
+            console.log('Validate: '+validate);
+        }
     });
 
-    var validate = validateForm();
-    if(validate != false){
-        console.log('Validate: '+validate);
-        sdk.getContent(function (content) {
-            console.log("Inside SaveContent: "+JSON.stringify(content, null, 2));
-            
-            //var imageHTML = '<img src="'+imgUrl+'" style="width:150px;display:block;margin: 0 auto;"/>';
-            console.log("Ampscript: "+ampSnippet);
-
-            content = ampSnippet;
-            sdk.setContent(content, function (setContent) {
-                console.log("setContent: "+JSON.stringify(setContent, null, 2));
-            });
-            
-        });
-        var superContent = "<p><b>Dynamic Content Type: Summary</b></p><p>Preview dynamic content by clicking next.</p>";
-        console.log("SuperContent HTML: "+JSON.stringify(data.defaultContentHTML, null, 2));
-        sdk.setSuperContent(data.defaultContentHTML, function (setSuperContent){
-            console.log("SuperContent: "+JSON.stringify(setSuperContent, null, 2));
-        });
-    }else{
-        console.log('Validate: '+validate);
-    }
 }
 
 function validateForm() {
