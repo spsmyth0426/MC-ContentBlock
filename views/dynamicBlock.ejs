@@ -153,8 +153,6 @@ sdk.getData(function (data) {
 
 function saveContent(name, value) {
 
-    $( "#dynamicLoader" ).removeClass( "hide" );
-
     var ampSnippet = "";
 
     sdk.getData(function (data) {
@@ -218,8 +216,6 @@ function saveContent(name, value) {
         }
     });
 
-    $( ".loader" ).addClass( "hide" );
-
 }
 
 function validateForm() {
@@ -232,8 +228,10 @@ function validateForm() {
 }
 
 $('#type, #relevantId, #condition1, #content1, #defaultContent1').change(function(){
+    $( "#dynamicLoader" ).removeClass( "hide" );
     //$('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
     saveContent($(this).attr("name"), $(this).val());
+    $( "#dynamicLoader" ).addClass( "hide" );
 });
 
 $('#defaultContent1').change(function(){
