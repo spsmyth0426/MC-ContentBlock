@@ -17,10 +17,6 @@
 
     <!--Styles-->
     <style type="text/css">
-        body {
-            padding: 20px;
-            margin: 0;
-        }
         .step {
             display: none;
         }
@@ -47,10 +43,10 @@
 
 </head>
 <body>
-<div class="loaderContainer" style="width:100%;height:100%;z-index:9;position: absolute;">
+<div class="loaderContainer" style="width:100%;height:100%;z-index:9;position: absolute;background-color:gray;opacity: .5;">
     <div id="dynamicLoader" class="loader hide" style="position:absolute;top:50%;left:45%;z-index:10;"></div>   
 </div>     
-<form id="dynamicForm">    
+<form id="dynamicForm" style="padding: 20px;margin: 0;">    
 <div id="step1" class="step">
         <p>Description: This block is used to build dynamic content to related data extensions that the normal dynamic content block does not allow.</p>
         <br>
