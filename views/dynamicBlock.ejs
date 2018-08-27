@@ -43,8 +43,8 @@
 
 </head>
 <body>
-<div class="loaderContainer" style="width:100%;height:100%;z-index:9;position: absolute;background-color:gray;opacity: .5;">
-    <div id="dynamicLoader" class="loader hide" style="position:absolute;top:50%;left:45%;z-index:10;"></div>   
+<div class="loaderContainer hide" id="dynamicContainer" style="width:100%;height:100%;z-index:9;position: absolute;background-color:gray;opacity: .5;">
+    <div id="dynamicLoader" class="loader" style="position:absolute;top:50%;left:45%;z-index:10;"></div>   
 </div>     
 <form id="dynamicForm" style="padding: 20px;margin: 0;">    
 <div id="step1" class="step">
@@ -226,10 +226,10 @@ function validateForm() {
 }
 
 $('#type, #relevantId, #condition1, #content1, #defaultContent1').change(function(){
-    $( "#dynamicLoader" ).removeClass( "hide" );
+    $( "#dynamicContainer" ).removeClass( "hide" );
     //$('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
     saveContent($(this).attr("name"), $(this).val());
-    $( "#dynamicLoader" ).addClass( "hide" );
+    $( "#dynamicContainer" ).addClass( "hide" );
 });
 
 $('#defaultContent1').change(function(){
