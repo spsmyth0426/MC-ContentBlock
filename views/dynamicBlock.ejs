@@ -179,6 +179,9 @@ function saveContent(name, value) {
                 ampSnippet: ampSnippet
             });
 
+            $('#dataObject').html(JSON.stringify(data.dataArray, null, 2));
+            $("#ampSnippet").html(JSON.stringify(data.ampSnippet, null, 2));
+
             console.log("Ampscript: "+JSON.stringify(data.ampscript, null, 2));
             console.log("Inside updateObject: "+JSON.stringify(data, null, 2));
         }
@@ -226,10 +229,8 @@ function validateForm() {
 }
 
 $('#type, #relevantId, #condition1, #content1, #defaultContent1').change(function(){
-    $( "#dynamicContainer" ).removeClass( "hide" );
     //$('#showImage').html('<img src="'+$(this).val()+'" style="width:150px;"/>');
     saveContent($(this).attr("name"), $(this).val());
-    $( "#dynamicContainer" ).addClass( "hide" );
 });
 
 $('#defaultContent1').change(function(){
